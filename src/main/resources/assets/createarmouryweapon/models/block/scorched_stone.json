@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+      "end": "createarmouryweapon:block/scorched_stone_top",
+      "side": "createarmouryweapon:block/scorched_stone_side"
+    }
+  }
