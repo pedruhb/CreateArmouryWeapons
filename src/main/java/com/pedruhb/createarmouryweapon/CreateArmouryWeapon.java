@@ -1,13 +1,32 @@
 package com.pedruhb.createarmouryweapon;
 
-import com.mojang.logging.LogUtils;
+import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotBlock;
+import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotBlockEntity;
+import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotRenderer;
+import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankBlock;
+import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankBlockEntity;
+import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankGenerator;
+import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankItem;
+import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankModel;
+import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankRenderer;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
+import com.simibubi.create.content.redstone.displayLink.source.ItemNameDisplaySource;
+import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BuilderTransformers;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.data.SharedProperties;
+import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
+import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
+import static com.simibubi.create.content.redstone.displayLink.AllDisplayBehaviours.assignDataBehaviour;
+import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
+
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -26,18 +45,17 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraft.network.chat.Component;
-import org.slf4j.Logger;
 
 @Mod(CreateArmouryWeapon.MODID)
 public class CreateArmouryWeapon
 {
     public static final String MODID = "createarmouryweapon";
-    private static final Logger LOGGER = LogUtils.getLogger();
     
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 	public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
+    public static final TagKey<Block> CAST_TAG = BlockTags.create(new ResourceLocation(MODID, "cast"));
 
     /* Blocks */
     public static final RegistryObject<Block> GROUT = BLOCKS.register("grout", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).sound(SoundType.SAND).strength(3.0f).friction(0.8F)));
@@ -170,6 +188,43 @@ public class CreateArmouryWeapon
     .transform(pickaxeOnly())
     .register();
 
+    /* Casting Depot */
+    public static final BlockEntry<CastingDepotBlock> CASTING_DEPOT = REGISTRATE.block("casting_depot", CastingDepotBlock::new)
+	.initialProperties(SharedProperties::stone)
+	.properties(p -> p.mapColor(MapColor.COLOR_GRAY).noOcclusion())
+    .transform(axeOrPickaxe())
+	.blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+	.onRegister(assignDataBehaviour(new ItemNameDisplaySource(), "combine_item_names"))
+	.item()
+	.transform(customItemModel("_", "block"))
+	.register();
+
+    public static final BlockEntityEntry<CastingDepotBlockEntity> CASTING_DEPOT_ENTITY = REGISTRATE.blockEntity("casting_depot", CastingDepotBlockEntity::new)
+	.validBlocks(CreateArmouryWeapon.CASTING_DEPOT)
+	.renderer(() -> CastingDepotRenderer::new)
+	.register();
+
+    /* Seared Fluid Tank */
+    public static final BlockEntry<SearedFluidTankBlock> SEARED_TANK = REGISTRATE.block("seared_tank", SearedFluidTankBlock::regular)
+    .initialProperties(SharedProperties::copperMetal)
+    .properties(p -> p.noOcclusion().isRedstoneConductor((p1, p2, p3) -> true))
+    .properties(p -> p.isRedstoneConductor((p1, p2, p3) -> true))
+    .transform(pickaxeOnly())
+    .blockstate(new SearedFluidTankGenerator()::generate)
+    .onRegister(CreateRegistrate.blockModel(() -> SearedFluidTankModel::standard))
+    .addLayer(() -> RenderType::cutoutMipped)
+    .item(SearedFluidTankItem::new)
+    .model(AssetLookup.customBlockItemModel("_", "block_single_window"))
+    .build()
+    .register();
+
+    public static final BlockEntityEntry<SearedFluidTankBlockEntity> SEARED_TANK_ENTITY = REGISTRATE
+	.blockEntity("seared_tank", SearedFluidTankBlockEntity::new)
+	.validBlocks(SEARED_TANK)
+	.renderer(() -> SearedFluidTankRenderer::new)
+	.register();
+
+    /* ... */
     public static final RegistryObject<CreativeModeTab> CREATE_AW_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> BACON.get().getDefaultInstance())
@@ -260,6 +315,8 @@ public class CreateArmouryWeapon
 
             event.accept(SEARED_CASING.get());
             event.accept(SCORCHED_CASING.get());
+            event.accept(CASTING_DEPOT.get());
+            event.accept(SEARED_TANK.get());
 
         }
     }

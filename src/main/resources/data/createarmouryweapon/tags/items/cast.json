@@ -1,0 +1,29 @@
+{
+    "replace": false,
+    "values": [
+      "createarmouryweapon:cast_blank",
+      "createarmouryweapon:cast_bow_grip",
+      "createarmouryweapon:cast_bow_limb",
+      "createarmouryweapon:cast_bowstring",
+      "createarmouryweapon:cast_broad_axe_head",
+      "createarmouryweapon:cast_broad_blade",
+      "createarmouryweapon:cast_coin",
+      "createarmouryweapon:cast_gear",
+      "createarmouryweapon:cast_gem",
+      "createarmouryweapon:cast_hammer_head",
+      "createarmouryweapon:cast_ingot",
+      "createarmouryweapon:cast_large_plate",
+      "createarmouryweapon:cast_nugget",
+      "createarmouryweapon:cast_pickaxe_head",
+      "createarmouryweapon:cast_plate",
+      "createarmouryweapon:cast_repair_kit",
+      "createarmouryweapon:cast_rod",
+      "createarmouryweapon:cast_round_plate",
+      "createarmouryweapon:cast_small_axe_head",
+      "createarmouryweapon:cast_small_blade",
+      "createarmouryweapon:cast_tool_binding",
+      "createarmouryweapon:cast_tool_handle",
+      "createarmouryweapon:cast_tough_handle",
+      "createarmouryweapon:cast_wire"
+    ]
+  }
