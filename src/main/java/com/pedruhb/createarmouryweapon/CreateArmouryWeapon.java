@@ -1,5 +1,7 @@
 package com.pedruhb.createarmouryweapon;
 
+import com.google.gson.JsonSyntaxException;
+import com.mojang.logging.LogUtils;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotBlock;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotBlockEntity;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotRenderer;
@@ -9,7 +11,12 @@ import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankGenerato
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankItem;
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankModel;
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankRenderer;
+import com.pedruhb.createarmouryweapon.items.PickaxeHead;
+import com.pedruhb.createarmouryweapon.items.color.PartColor;
+import com.pedruhb.createarmouryweapon.materials.MaterialManager;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
+import com.simibubi.create.content.legacy.ChromaticCompoundColor;
+import com.simibubi.create.content.legacy.ChromaticCompoundItem;
 import com.simibubi.create.content.redstone.displayLink.source.ItemNameDisplaySource;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BuilderTransformers;
@@ -17,7 +24,11 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.entry.ItemEntry;
+
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
+
+
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.content.redstone.displayLink.AllDisplayBehaviours.assignDataBehaviour;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
@@ -25,6 +36,7 @@ import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.food.FoodProperties;
@@ -32,24 +44,30 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraft.network.chat.Component;
+import org.slf4j.Logger;
+
 
 @Mod(CreateArmouryWeapon.MODID)
 public class CreateArmouryWeapon
 {
     public static final String MODID = "createarmouryweapon";
+    public static final Logger LOGGER = LogUtils.getLogger();
     
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
@@ -170,6 +188,20 @@ public class CreateArmouryWeapon
     /* FOOD */
     public static final RegistryObject<Item> BACON = ITEMS.register("bacon", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().nutrition(1).saturationMod(2f).build())));
     public static final RegistryObject<Item> FRIED_EGG = ITEMS.register("fried_egg", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().nutrition(1).saturationMod(2f).build())));
+
+    /* PARTS */
+    public static final RegistryObject<Item> TOOL_HANDLE = ITEMS.register("tool_handle", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SWORD_BLADE = ITEMS.register("sword_blade", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SWORD_GUARD = ITEMS.register("sword_guard", () -> new Item(new Item.Properties()));
+    //public static final RegistryObject<Item> PICKAXE_HEAD = ITEMS.register("pickaxe_head", () -> new PickaxeHead(new Item.Properties()));
+    public static final RegistryObject<Item> TOOL_BINDING = ITEMS.register("tool_binding", () -> new Item(new Item.Properties()));
+
+    public static final ItemEntry<PickaxeHead> PICKAXE_HEAD =
+    REGISTRATE.item("pickaxe_head", PickaxeHead::new)
+        .properties(p -> p.rarity(Rarity.UNCOMMON))
+        .model(AssetLookup.existingItemModel())
+        .color(() -> PartColor::new)
+        .register();
 
     /* CASINGS */
     public static final BlockEntry<CasingBlock> SEARED_CASING = REGISTRATE.block("seared_casing", CasingBlock::new)
@@ -318,6 +350,11 @@ public class CreateArmouryWeapon
             event.accept(CASTING_DEPOT.get());
             event.accept(SEARED_TANK.get());
 
+            event.accept(SWORD_BLADE);
+            event.accept(SWORD_GUARD);
+            event.accept(TOOL_BINDING);
+            event.accept(TOOL_HANDLE);
+            event.accept(PICKAXE_HEAD.get());
         }
     }
 
@@ -332,7 +369,14 @@ public class CreateArmouryWeapon
         modEventBus.addListener(this::addCreative);
     }
 
-    public static ResourceLocation asResource(String path) {
-		return new ResourceLocation(MODID, path);
-	}
+    public static ResourceLocation getResource(String name) {
+        return new ResourceLocation(MODID, name);
+    }
+
+    @SubscribeEvent
+    public void onServerStarting(ServerStartingEvent event)
+    {
+        MaterialManager.load(event.getServer().getResourceManager());
+    }
+
 }

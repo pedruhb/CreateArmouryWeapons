@@ -97,5 +97,6 @@
   "item.createarmouryweapon.bacon": "Bacon",
   "item.createarmouryweapon.fried_egg": "Fried Egg",
   "block.createarmouryweapon.casting_depot": "Casting Depot",
-  "block.createarmouryweapon.seared_tank": "Seared Tank"
+  "block.createarmouryweapon.seared_tank": "Seared Tank",
+  "item.createarmouryweapon.pickaxe_head": "Pickaxe Head"
 }

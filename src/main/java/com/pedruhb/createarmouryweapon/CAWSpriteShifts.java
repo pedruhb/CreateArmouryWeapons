@@ -20,7 +20,7 @@ public class CAWSpriteShifts {
 	}
 
 	private static CTSpriteShiftEntry getCT(CTType type, String blockTextureName, String connectedTextureName) {
-		return CTSpriteShifter.getCT(type, CreateArmouryWeapon.asResource("block/" + blockTextureName), CreateArmouryWeapon.asResource("block/" + connectedTextureName + "_connected"));
+		return CTSpriteShifter.getCT(type, CreateArmouryWeapon.getResource("block/" + blockTextureName), CreateArmouryWeapon.getResource("block/" + connectedTextureName + "_connected"));
 	}
 
 	private static CTSpriteShiftEntry getCT(CTType type, String blockTextureName) {

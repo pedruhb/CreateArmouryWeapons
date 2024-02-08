@@ -64,6 +64,7 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    mavenCentral()
     maven {
         url = "https://maven.tterrag.com/"
     }
@@ -73,13 +74,25 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        // location of the maven for Vazkii's mods
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
 }
 
 dependencies {
+
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    compileOnly fg.deobf("mezz.jei:jei-${jei_minecraft_version}-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${jei_minecraft_version}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_minecraft_version}-forge:${jei_version}")
+
 }
 
 tasks.named('processResources', ProcessResources).configure {

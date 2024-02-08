@@ -1,0 +1,17 @@
+{
+    "enabled": true,
+    "molten_enabled": true,
+    "name": "Redstone",
+    "tier": 1,
+    "ingot_tag": "forge:ingots/redstone",
+    "base_color": "#f0052c",
+    "tools": {
+        "pickaxe": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "traits": ["haste_2"]
+        }
+    }
+}

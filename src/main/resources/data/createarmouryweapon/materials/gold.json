@@ -1,0 +1,17 @@
+{
+    "enabled": true,
+    "molten_enabled": true,
+    "name": "Gold",
+    "tier": 1,
+    "ingot_tag": "forge:ingots/gold",
+    "base_color": "#FFFF00",
+    "tools": {
+        "pickaxe": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "traits": ["fortune_2"]
+        }
+    }
+}
