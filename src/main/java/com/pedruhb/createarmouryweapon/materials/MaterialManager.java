@@ -8,6 +8,7 @@ import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
 import com.pedruhb.createarmouryweapon.materials.serialize.Material;
 import com.simibubi.create.AllFluids.TintedFluidType;
 import com.tterrag.registrate.builders.FluidBuilder.FluidTypeFactory;
+import com.tterrag.registrate.util.CreativeModeTabModifier;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.utility.Color;
 

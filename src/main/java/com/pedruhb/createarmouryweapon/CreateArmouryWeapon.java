@@ -1,6 +1,5 @@
 package com.pedruhb.createarmouryweapon;
 
-import com.google.gson.JsonSyntaxException;
 import com.mojang.logging.LogUtils;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotBlock;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotBlockEntity;
@@ -11,12 +10,10 @@ import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankGenerato
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankItem;
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankModel;
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankRenderer;
-import com.pedruhb.createarmouryweapon.items.PickaxeHead;
+import com.pedruhb.createarmouryweapon.items.MaterialItem;
 import com.pedruhb.createarmouryweapon.items.color.PartColor;
 import com.pedruhb.createarmouryweapon.materials.MaterialManager;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
-import com.simibubi.create.content.legacy.ChromaticCompoundColor;
-import com.simibubi.create.content.legacy.ChromaticCompoundItem;
 import com.simibubi.create.content.redstone.displayLink.source.ItemNameDisplaySource;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BuilderTransformers;
@@ -190,14 +187,42 @@ public class CreateArmouryWeapon
     public static final RegistryObject<Item> FRIED_EGG = ITEMS.register("fried_egg", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().nutrition(1).saturationMod(2f).build())));
 
     /* PARTS */
-    public static final RegistryObject<Item> TOOL_HANDLE = ITEMS.register("tool_handle", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> SWORD_BLADE = ITEMS.register("sword_blade", () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> SWORD_GUARD = ITEMS.register("sword_guard", () -> new Item(new Item.Properties()));
+    //public static final RegistryObject<Item> TOOL_HANDLE = ITEMS.register("tool_handle", () -> new Item(new Item.Properties()));
+    //public static final RegistryObject<Item> SWORD_BLADE = ITEMS.register("sword_blade", () -> new Item(new Item.Properties()));
+    //public static final RegistryObject<Item> SWORD_GUARD = ITEMS.register("sword_guard", () -> new Item(new Item.Properties()));
     //public static final RegistryObject<Item> PICKAXE_HEAD = ITEMS.register("pickaxe_head", () -> new PickaxeHead(new Item.Properties()));
-    public static final RegistryObject<Item> TOOL_BINDING = ITEMS.register("tool_binding", () -> new Item(new Item.Properties()));
+    //public static final RegistryObject<Item> TOOL_BINDING = ITEMS.register("tool_binding", () -> new Item(new Item.Properties()));
 
-    public static final ItemEntry<PickaxeHead> PICKAXE_HEAD =
-    REGISTRATE.item("pickaxe_head", PickaxeHead::new)
+    public static final ItemEntry<MaterialItem> PICKAXE_HEAD =
+    REGISTRATE.item("pickaxe_head", MaterialItem::new)
+        .properties(p -> p.rarity(Rarity.UNCOMMON))
+        .model(AssetLookup.existingItemModel())
+        .color(() -> PartColor::new)
+        .register();
+
+    public static final ItemEntry<MaterialItem> TOOL_BINDING =
+    REGISTRATE.item("tool_binding", MaterialItem::new)
+        .properties(p -> p.rarity(Rarity.UNCOMMON))
+        .model(AssetLookup.existingItemModel())
+        .color(() -> PartColor::new)
+        .register();
+
+    public static final ItemEntry<MaterialItem> TOOL_HANDLE =
+    REGISTRATE.item("tool_handle", MaterialItem::new)
+        .properties(p -> p.rarity(Rarity.UNCOMMON))
+        .model(AssetLookup.existingItemModel())
+        .color(() -> PartColor::new)
+        .register();
+
+    public static final ItemEntry<MaterialItem> SWORD_BLADE =
+    REGISTRATE.item("sword_blade", MaterialItem::new)
+        .properties(p -> p.rarity(Rarity.UNCOMMON))
+        .model(AssetLookup.existingItemModel())
+        .color(() -> PartColor::new)
+        .register();
+
+    public static final ItemEntry<MaterialItem> SWORD_GUARD =
+        REGISTRATE.item("sword_guard", MaterialItem::new)
         .properties(p -> p.rarity(Rarity.UNCOMMON))
         .model(AssetLookup.existingItemModel())
         .color(() -> PartColor::new)
@@ -350,10 +375,10 @@ public class CreateArmouryWeapon
             event.accept(CASTING_DEPOT.get());
             event.accept(SEARED_TANK.get());
 
-            event.accept(SWORD_BLADE);
-            event.accept(SWORD_GUARD);
-            event.accept(TOOL_BINDING);
-            event.accept(TOOL_HANDLE);
+            event.accept(SWORD_BLADE.get());
+            event.accept(SWORD_GUARD.get());
+            event.accept(TOOL_BINDING.get());
+            event.accept(TOOL_HANDLE.get());
             event.accept(PICKAXE_HEAD.get());
         }
     }

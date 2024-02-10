@@ -2,16 +2,43 @@
     "enabled": true,
     "molten_enabled": true,
     "name": "Redstone",
+    "color": "#f0052c",
     "tier": 1,
-    "ingot_tag": "forge:ingots/redstone",
-    "base_color": "#f0052c",
-    "tools": {
-        "pickaxe": {
+    "parts": {
+        "pickaxe_head": {
             "enabled": true,
             "mining_speed": 2.0,
             "attack_damage":  4,
             "attack_speed": 1.2,
-            "traits": ["haste_2"]
+            "traits": ["silk_touch"]
+        },
+        "sword_blade": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "traits": ["sharpness_3"]
+        },
+        "tool_handle": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "traits": ["haste_1"]
+        },
+        "tool_binding": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "traits": []
+        },
+        "sword_guard": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "traits": ["looting_2"]
         }
     }
 }

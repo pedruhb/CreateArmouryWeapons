@@ -98,5 +98,9 @@
   "item.createarmouryweapon.fried_egg": "Fried Egg",
   "block.createarmouryweapon.casting_depot": "Casting Depot",
   "block.createarmouryweapon.seared_tank": "Seared Tank",
-  "item.createarmouryweapon.pickaxe_head": "Pickaxe Head"
+  "item.createarmouryweapon.pickaxe_head": "Pickaxe Head",
+  "item.createarmouryweapon.sword_blade": "Sword Blade",
+  "item.createarmouryweapon.tool_binding": "Tool Binding",
+  "item.createarmouryweapon.tool_handle": "Tool Handle",
+  "item.createarmouryweapon.sword_guard": "Sword Guard"
 }

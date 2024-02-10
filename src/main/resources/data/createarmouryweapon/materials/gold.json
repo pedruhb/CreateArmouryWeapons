@@ -2,16 +2,43 @@
     "enabled": true,
     "molten_enabled": true,
     "name": "Gold",
+    "color": "#FFFF00",
     "tier": 1,
-    "ingot_tag": "forge:ingots/gold",
-    "base_color": "#FFFF00",
-    "tools": {
-        "pickaxe": {
+    "parts": {
+        "pickaxe_head": {
             "enabled": true,
             "mining_speed": 2.0,
             "attack_damage":  4,
             "attack_speed": 1.2,
-            "traits": ["fortune_2"]
+            "traits": ["silk_touch", "teste1", "teste2", "teste3"]
+        },
+        "sword_blade": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "traits": ["sharpness_3"]
+        },
+        "tool_handle": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "traits": ["haste_1"]
+        },
+        "tool_binding": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "traits": []
+        },
+        "sword_guard": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "traits": ["looting_2"]
         }
     }
 }
