@@ -14,6 +14,7 @@ import com.pedruhb.createarmouryweapon.items.MaterialItem;
 import com.pedruhb.createarmouryweapon.items.color.PartColor;
 import com.pedruhb.createarmouryweapon.materials.MaterialManager;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
+import com.simibubi.create.content.kinetics.mechanicalArm.AllArmInteractionPointTypes.ComposterPoint;
 import com.simibubi.create.content.redstone.displayLink.source.ItemNameDisplaySource;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BuilderTransformers;
@@ -32,6 +33,7 @@ import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 
 import net.minecraft.tags.BlockTags;
@@ -41,6 +43,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -101,7 +104,7 @@ public class CreateArmouryWeapon
     public static final RegistryObject<Item> NETHERITE_NUGGET = ITEMS.register("netherite_nugget", () -> new Item(new Item.Properties()));
 
     /* REINFORCEMENT */
-    public static final RegistryObject<Item> REINFORCEMENT_BASE = ITEMS.register("reinforcement_base", () -> new Item(new Item.Properties()));
+/*     public static final RegistryObject<Item> REINFORCEMENT_BASE = ITEMS.register("reinforcement_base", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> REINFORCEMENT_BRONZE = ITEMS.register("reinforcement_bronze", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> REINFORCEMENT_COBALT = ITEMS.register("reinforcement_cobalt", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> REINFORCEMENT_EMERALD = ITEMS.register("reinforcement_emerald", () -> new Item(new Item.Properties()));
@@ -109,7 +112,7 @@ public class CreateArmouryWeapon
     public static final RegistryObject<Item> REINFORCEMENT_IRON = ITEMS.register("reinforcement_iron", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> REINFORCEMENT_SEARED = ITEMS.register("reinforcement_seared", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> REINFORCEMENT_SLIMESTEEL = ITEMS.register("reinforcement_slimesteel", () -> new Item(new Item.Properties()));
-
+ */
     /* SEARED */
     public static final RegistryObject<Item> SEARED_BRICK = ITEMS.register("seared_brick", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Block> SEARED_BRICKS = BLOCKS.register("seared_bricks", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(8.0F, 28F)));
@@ -291,6 +294,7 @@ public class CreateArmouryWeapon
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
         if (event.getTabKey() == this.CREATE_AW_TAB.getKey()){
+
             event.accept(BACON);
             event.accept(FRIED_EGG);
 
@@ -379,7 +383,7 @@ public class CreateArmouryWeapon
             event.accept(SWORD_GUARD.get());
             event.accept(TOOL_BINDING.get());
             event.accept(TOOL_HANDLE.get());
-            event.accept(PICKAXE_HEAD.get());
+            //event.accept(PICKAXE_HEAD.get());
         }
     }
 

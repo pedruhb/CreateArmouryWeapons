@@ -8,7 +8,6 @@ import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
 import com.pedruhb.createarmouryweapon.materials.serialize.Material;
 import com.simibubi.create.AllFluids.TintedFluidType;
 import com.tterrag.registrate.builders.FluidBuilder.FluidTypeFactory;
-import com.tterrag.registrate.util.CreativeModeTabModifier;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.utility.Color;
 
@@ -17,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.fluids.FluidStack;
@@ -36,6 +36,7 @@ public class MaterialManager {
     private static final Gson GSON = (new GsonBuilder()).disableHtmlEscaping().create();
     public static Set<Material> MATERIALS = new HashSet<Material>();
 	public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateArmouryWeapon.MODID);
+    public static ArrayList<ItemStack> parts_stacks = new ArrayList<ItemStack>();
 
     public static void load(ResourceManager resourceManager) {
 
