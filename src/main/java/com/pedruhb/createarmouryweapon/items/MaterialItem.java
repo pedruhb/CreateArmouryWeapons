@@ -8,6 +8,7 @@ import com.google.gson.JsonArray;
 import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
 import com.pedruhb.createarmouryweapon.materials.MaterialManager;
 import com.pedruhb.createarmouryweapon.materials.serialize.Material;
+import com.pedruhb.createarmouryweapon.materials.serialize.tools.MaterialPart;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -16,6 +17,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MaterialItem extends Item {
 
@@ -32,12 +36,12 @@ public class MaterialItem extends Item {
         String material;
 
         if (tags == null || tags.getString("material") == null) {
-            material = "Unknown";
+            material = Component.translatable("generic.createarmouryweapon.unknown").getString();
         } else {
-            material = tags.getString("material").substring(0, 1).toUpperCase() + tags.getString("material").substring(1);
+            material = Component.translatable("material.createarmouryweapon." + tags.getString("material")).getString();
         }
 
-        tooltip.add(Component.literal("Material: " + material));
+        tooltip.add(Component.literal(Component.translatable("generic.createarmouryweapon.material").getString() + ": " + material));
 
         if (tags == null)
             return;
@@ -48,23 +52,40 @@ public class MaterialItem extends Item {
 
             if (material_part.getName().toLowerCase().contains(tags.getString("material").toLowerCase())) {
 
-                if (stack.getItem().toString() == "pickaxe_head") {
-                    partTraitsArray = material_part.getPickaxePart().getTraits();
-                } else if (stack.getItem().toString() == "sword_blade") {
-                    partTraitsArray = material_part.getSwordBlade().getTraits();
-                } else if (stack.getItem().toString() == "sword_guard") {
-                    partTraitsArray = material_part.getSwordGuard().getTraits();
-                } else if (stack.getItem().toString() == "tool_binding") {
-                    partTraitsArray = material_part.getToolBinding().getTraits();
-                } else if (stack.getItem().toString() == "tool_handle") {
-                    partTraitsArray = material_part.getToolHandle().getTraits();
+                int attack_damage = 0;
+                int attack_speed = 0;
+                int mining_speed = 0;
+                int tier = material_part.getTier();
+
+                HashMap<String, MaterialPart> parts = new HashMap<String, MaterialPart>();
+
+                parts.put("pickaxe_head", material_part.getPickaxePart());
+                parts.put("sword_blade", material_part.getSwordBlade());
+                parts.put("sword_guard", material_part.getSwordGuard());
+                parts.put("tool_binding", material_part.getToolBinding());
+                parts.put("tool_handle", material_part.getToolHandle());
+
+                for (Map.Entry<String, MaterialPart> part : parts.entrySet()) {
+                    if (stack.getItem().toString() == part.getKey()) {
+                        partTraitsArray = part.getValue().getTraits();
+                        attack_damage = part.getValue().getAttackDamage();
+                        attack_speed = part.getValue().getAttackSpeed();
+                        mining_speed = part.getValue().getMiningSpeed();
+                    }
                 }
+
+                tooltip.add(Component.literal(""));
+                tooltip.add(Component.literal(Component.translatable("generic.createarmouryweapon.stats").getString() + ": "));
+                tooltip.add(Component.literal(Component.translatable("stats.createarmouryweapon.tier").getString() + ": " + tier));
+                tooltip.add(Component.literal(Component.translatable("stats.createarmouryweapon.attack_damage").getString() + ": " + attack_damage));
+                tooltip.add(Component.literal(Component.translatable("stats.createarmouryweapon.attack_speed").getString() + ": " + attack_speed));
+                tooltip.add(Component.literal(Component.translatable("stats.createarmouryweapon.mining_speed").getString() + ": " + mining_speed));
 
                 if (partTraitsArray != null) {
 
-                    if(partTraitsArray.size() > 0){
+                    if (partTraitsArray.size() > 0) {
                         tooltip.add(Component.literal(""));
-                        tooltip.add(Component.literal("Traits: "));
+                        tooltip.add(Component.literal(Component.translatable("generic.createarmouryweapon.traits").getString() + ": "));
                     }
 
                     for (int i = 0; i < partTraitsArray.size(); i++) {

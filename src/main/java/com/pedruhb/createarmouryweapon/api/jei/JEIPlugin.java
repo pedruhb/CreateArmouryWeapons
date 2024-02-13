@@ -2,6 +2,7 @@ package com.pedruhb.createarmouryweapon.api.jei;
 
 import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
 import com.pedruhb.createarmouryweapon.materials.MaterialManager;
+import com.pedruhb.createarmouryweapon.materials.serialize.Material;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -10,10 +11,15 @@ import mezz.jei.api.registration.IModIngredientRegistration;
 import mezz.jei.api.registration.ISubtypeRegistration;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
@@ -23,41 +29,56 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public void onRuntimeAvailable(IJeiRuntime r) {
+
         runtime = r;
-        
-            Collection<ItemStack> toadd = new ArrayList<ItemStack>();
 
-            CompoundTag item_nbt = new CompoundTag();
-            item_nbt.putString("material", "redstone");
+        Collection<ItemStack> toadd = new ArrayList<ItemStack>();
 
-            var pick_head = CreateArmouryWeapon.PICKAXE_HEAD.asStack();
-            pick_head.setTag(item_nbt);
+        for (Material material : MaterialManager.MATERIALS) {
 
-            toadd.add(pick_head);
+            HashMap<ItemStack, Boolean> parts = new HashMap<ItemStack, Boolean>();
 
-            CompoundTag item_nbt2 = new CompoundTag();
-            item_nbt2.putString("material", "gold");
+            parts.put(CreateArmouryWeapon.PICKAXE_HEAD.asStack(), material.getPickaxePart().isEnabled());
+            parts.put(CreateArmouryWeapon.TOOL_BINDING.asStack(), material.getToolBinding().isEnabled());
+            parts.put(CreateArmouryWeapon.TOOL_HANDLE.asStack(), material.getToolHandle().isEnabled());
+            parts.put(CreateArmouryWeapon.SWORD_BLADE.asStack(), material.getSwordBlade().isEnabled());
+            parts.put(CreateArmouryWeapon.SWORD_GUARD.asStack(), material.getSwordGuard().isEnabled());
 
-            var pick_head2 = CreateArmouryWeapon.PICKAXE_HEAD.asStack();
-            pick_head2.setTag(item_nbt2);
+            for (Map.Entry<ItemStack, Boolean> part : parts.entrySet()) {
 
-            toadd.add(pick_head2);
+                Boolean partEnabled = part.getValue();
+                ItemStack partStack = part.getKey();
 
-            r.getIngredientManager().addIngredientsAtRuntime(VanillaTypes.ITEM_STACK, toadd);
+                if(!partEnabled) continue;
+
+                CompoundTag material_nbt = new CompoundTag();
+                material_nbt.putString("material", material.getName().toLowerCase());
+
+                partStack.setTag(material_nbt);
+                partStack.setHoverName(Component.translatable("item.createarmouryweapon." + material.getName().toLowerCase() + "_" + partStack.getItem().toString()));
+
+                toadd.add(partStack);
+
+            }
+            
+        }
+
+        r.getIngredientManager().addIngredientsAtRuntime(VanillaTypes.ITEM_STACK, toadd);
+
     }
 
     @Override
-    public void registerItemSubtypes(ISubtypeRegistration r){
+    public void registerItemSubtypes(ISubtypeRegistration r) {
         r.useNbtForSubtypes(CreateArmouryWeapon.PICKAXE_HEAD.asItem());
     }
 
     @Override
-    public void registerIngredients(IModIngredientRegistration r){
+    public void registerIngredients(IModIngredientRegistration r) {
     }
 
     @Override
-	public ResourceLocation getPluginUid() {
-		return ID;
-	}
+    public ResourceLocation getPluginUid() {
+        return ID;
+    }
 
 }

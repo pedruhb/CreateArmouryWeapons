@@ -14,7 +14,6 @@ import com.pedruhb.createarmouryweapon.items.MaterialItem;
 import com.pedruhb.createarmouryweapon.items.color.PartColor;
 import com.pedruhb.createarmouryweapon.materials.MaterialManager;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
-import com.simibubi.create.content.kinetics.mechanicalArm.AllArmInteractionPointTypes.ComposterPoint;
 import com.simibubi.create.content.redstone.displayLink.source.ItemNameDisplaySource;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BuilderTransformers;
@@ -33,7 +32,6 @@ import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 
 import net.minecraft.tags.BlockTags;
@@ -43,7 +41,6 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -104,7 +101,7 @@ public class CreateArmouryWeapon
     public static final RegistryObject<Item> NETHERITE_NUGGET = ITEMS.register("netherite_nugget", () -> new Item(new Item.Properties()));
 
     /* REINFORCEMENT */
-/*     public static final RegistryObject<Item> REINFORCEMENT_BASE = ITEMS.register("reinforcement_base", () -> new Item(new Item.Properties()));
+/*  public static final RegistryObject<Item> REINFORCEMENT_BASE = ITEMS.register("reinforcement_base", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> REINFORCEMENT_BRONZE = ITEMS.register("reinforcement_bronze", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> REINFORCEMENT_COBALT = ITEMS.register("reinforcement_cobalt", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> REINFORCEMENT_EMERALD = ITEMS.register("reinforcement_emerald", () -> new Item(new Item.Properties()));
@@ -190,12 +187,6 @@ public class CreateArmouryWeapon
     public static final RegistryObject<Item> FRIED_EGG = ITEMS.register("fried_egg", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().alwaysEat().nutrition(1).saturationMod(2f).build())));
 
     /* PARTS */
-    //public static final RegistryObject<Item> TOOL_HANDLE = ITEMS.register("tool_handle", () -> new Item(new Item.Properties()));
-    //public static final RegistryObject<Item> SWORD_BLADE = ITEMS.register("sword_blade", () -> new Item(new Item.Properties()));
-    //public static final RegistryObject<Item> SWORD_GUARD = ITEMS.register("sword_guard", () -> new Item(new Item.Properties()));
-    //public static final RegistryObject<Item> PICKAXE_HEAD = ITEMS.register("pickaxe_head", () -> new PickaxeHead(new Item.Properties()));
-    //public static final RegistryObject<Item> TOOL_BINDING = ITEMS.register("tool_binding", () -> new Item(new Item.Properties()));
-
     public static final ItemEntry<MaterialItem> PICKAXE_HEAD =
     REGISTRATE.item("pickaxe_head", MaterialItem::new)
         .properties(p -> p.rarity(Rarity.UNCOMMON))
@@ -233,63 +224,63 @@ public class CreateArmouryWeapon
 
     /* CASINGS */
     public static final BlockEntry<CasingBlock> SEARED_CASING = REGISTRATE.block("seared_casing", CasingBlock::new)
-	.transform(BuilderTransformers.casing(() -> CAWSpriteShifts.SEARED_CASING))
-	.properties(p -> p.mapColor(MapColor.COLOR_BLACK))
-	.properties(p -> p.strength(55.0F, 1200.0F))
-	.properties(p -> p.sound(SoundType.STONE))
-	.transform(pickaxeOnly())
-	.register();
+	    .transform(BuilderTransformers.casing(() -> CAWSpriteShifts.SEARED_CASING))
+	    .properties(p -> p.mapColor(MapColor.COLOR_BLACK))
+	    .properties(p -> p.strength(55.0F, 1200.0F))
+	    .properties(p -> p.sound(SoundType.STONE))
+	    .transform(pickaxeOnly())
+	    .register();
     
     public static final BlockEntry<CasingBlock> SCORCHED_CASING = REGISTRATE.block("scorched_casing", CasingBlock::new)
-    .transform(BuilderTransformers.casing(() -> CAWSpriteShifts.SCORCHED_CASING))
-    .properties(p -> p.mapColor(MapColor.COLOR_BLACK))
-    .properties(p -> p.strength(55.0F, 1200.0F))
-    .properties(p -> p.sound(SoundType.STONE))
-    .transform(pickaxeOnly())
-    .register();
+        .transform(BuilderTransformers.casing(() -> CAWSpriteShifts.SCORCHED_CASING))
+        .properties(p -> p.mapColor(MapColor.COLOR_BLACK))
+        .properties(p -> p.strength(55.0F, 1200.0F))
+        .properties(p -> p.sound(SoundType.STONE))
+        .transform(pickaxeOnly())
+        .register();
 
     /* Casting Depot */
     public static final BlockEntry<CastingDepotBlock> CASTING_DEPOT = REGISTRATE.block("casting_depot", CastingDepotBlock::new)
-	.initialProperties(SharedProperties::stone)
-	.properties(p -> p.mapColor(MapColor.COLOR_GRAY).noOcclusion())
-    .transform(axeOrPickaxe())
-	.blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
-	.onRegister(assignDataBehaviour(new ItemNameDisplaySource(), "combine_item_names"))
-	.item()
-	.transform(customItemModel("_", "block"))
-	.register();
+	    .initialProperties(SharedProperties::stone)
+	    .properties(p -> p.mapColor(MapColor.COLOR_GRAY).noOcclusion())
+        .transform(axeOrPickaxe())
+	    .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+	    .onRegister(assignDataBehaviour(new ItemNameDisplaySource(), "combine_item_names"))
+	    .item()
+	    .transform(customItemModel("_", "block"))
+	    .register();
 
     public static final BlockEntityEntry<CastingDepotBlockEntity> CASTING_DEPOT_ENTITY = REGISTRATE.blockEntity("casting_depot", CastingDepotBlockEntity::new)
-	.validBlocks(CreateArmouryWeapon.CASTING_DEPOT)
-	.renderer(() -> CastingDepotRenderer::new)
-	.register();
+	    .validBlocks(CreateArmouryWeapon.CASTING_DEPOT)
+	    .renderer(() -> CastingDepotRenderer::new)
+	    .register();
 
     /* Seared Fluid Tank */
     public static final BlockEntry<SearedFluidTankBlock> SEARED_TANK = REGISTRATE.block("seared_tank", SearedFluidTankBlock::regular)
-    .initialProperties(SharedProperties::copperMetal)
-    .properties(p -> p.noOcclusion().isRedstoneConductor((p1, p2, p3) -> true))
-    .properties(p -> p.isRedstoneConductor((p1, p2, p3) -> true))
-    .transform(pickaxeOnly())
-    .blockstate(new SearedFluidTankGenerator()::generate)
-    .onRegister(CreateRegistrate.blockModel(() -> SearedFluidTankModel::standard))
-    .addLayer(() -> RenderType::cutoutMipped)
-    .item(SearedFluidTankItem::new)
-    .model(AssetLookup.customBlockItemModel("_", "block_single_window"))
-    .build()
-    .register();
+        .initialProperties(SharedProperties::copperMetal)
+        .properties(p -> p.noOcclusion().isRedstoneConductor((p1, p2, p3) -> true))
+        .properties(p -> p.isRedstoneConductor((p1, p2, p3) -> true))
+        .transform(pickaxeOnly())
+        .blockstate(new SearedFluidTankGenerator()::generate)
+        .onRegister(CreateRegistrate.blockModel(() -> SearedFluidTankModel::standard))
+        .addLayer(() -> RenderType::cutoutMipped)
+        .item(SearedFluidTankItem::new)
+        .model(AssetLookup.customBlockItemModel("_", "block_single_window"))
+        .build()
+        .register();
 
     public static final BlockEntityEntry<SearedFluidTankBlockEntity> SEARED_TANK_ENTITY = REGISTRATE
-	.blockEntity("seared_tank", SearedFluidTankBlockEntity::new)
-	.validBlocks(SEARED_TANK)
-	.renderer(() -> SearedFluidTankRenderer::new)
-	.register();
+	    .blockEntity("seared_tank", SearedFluidTankBlockEntity::new)
+	    .validBlocks(SEARED_TANK)
+	    .renderer(() -> SearedFluidTankRenderer::new)
+	    .register();
 
     /* ... */
     public static final RegistryObject<CreativeModeTab> CREATE_AW_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
-            .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> BACON.get().getDefaultInstance())
-            .title(Component.translatable(MODID))
-            .build());
+        .withTabsBefore(CreativeModeTabs.COMBAT)
+        .icon(() -> BACON.get().getDefaultInstance())
+        .title(Component.translatable(MODID))
+        .build());
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
@@ -362,7 +353,7 @@ public class CreateArmouryWeapon
             event.accept(SCORCHED_ROAD);
             event.accept(SCORCHED_STONE);
 
-            event.accept(REINFORCEMENT_BASE);
+/*          event.accept(REINFORCEMENT_BASE);
             event.accept(REINFORCEMENT_BRONZE);
             event.accept(REINFORCEMENT_COBALT);
             event.accept(REINFORCEMENT_EMERALD);
@@ -370,20 +361,22 @@ public class CreateArmouryWeapon
             event.accept(REINFORCEMENT_IRON);
             event.accept(REINFORCEMENT_SEARED);
             event.accept(REINFORCEMENT_SLIMESTEEL);
-
+ */
             event.accept(DEBRIS_NUGGET);
             event.accept(NETHERITE_NUGGET);
 
             event.accept(SEARED_CASING.get());
             event.accept(SCORCHED_CASING.get());
+
             event.accept(CASTING_DEPOT.get());
             event.accept(SEARED_TANK.get());
 
-            event.accept(SWORD_BLADE.get());
+           /*  event.accept(SWORD_BLADE.get());
             event.accept(SWORD_GUARD.get());
             event.accept(TOOL_BINDING.get());
             event.accept(TOOL_HANDLE.get());
-            //event.accept(PICKAXE_HEAD.get());
+            event.accept(PICKAXE_HEAD.get()); */
+
         }
     }
 

@@ -2,12 +2,6 @@ package com.pedruhb.createarmouryweapon.materials.serialize.tools;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.mojang.datafixers.types.templates.Tag;
-import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
-import com.pedruhb.createarmouryweapon.materials.MaterialManager;
-
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.ItemStack;
 
 public class MaterialPart {
 
@@ -25,12 +19,26 @@ public class MaterialPart {
          this.attack_damage = json.get("attack_damage").getAsInt();
          this.traits = json.get("traits").getAsJsonArray();
 
-
-
     }
 
     public JsonArray getTraits() {
         return this.traits;
+    }
+
+    public boolean isEnabled(){
+        return this.enabled;
+    }
+
+    public int getMiningSpeed() {
+        return this.mining_speed;
+    }
+
+    public int getAttackSpeed() {
+        return this.attack_speed;
+    }
+
+    public int getAttackDamage() {
+        return this.attack_damage;
     }
 
 }

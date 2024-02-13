@@ -1,17 +1,8 @@
 package com.pedruhb.createarmouryweapon.materials.serialize;
 
 import com.google.gson.JsonObject;
-import com.ibm.icu.impl.coll.Collation;
 import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
-import com.pedruhb.createarmouryweapon.api.jei.JEIPlugin;
 import com.pedruhb.createarmouryweapon.materials.serialize.tools.MaterialPart;
-
-import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.runtime.IIngredientManager;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.ItemStack;
-
-import java.util.Collection;
 
 public class Material {
 
@@ -35,22 +26,8 @@ public class Material {
         this.tier = json.get("tier").getAsInt();
         this.color = Integer.decode(json.get("color").getAsString());
 
-        if (json.get("parts").getAsJsonObject().get("pickaxe_head").getAsJsonObject().get("enabled").getAsBoolean()){
+        if (json.get("parts").getAsJsonObject().get("pickaxe_head").getAsJsonObject().get("enabled").getAsBoolean())
             this.pickaxeHead = new MaterialPart("pickaxe_head", json.get("parts").getAsJsonObject().get("pickaxe_head").getAsJsonObject());
-/* 
-            IIngredientManager manager = JEIPlugin.runtime.getIngredientManager();
-            Collection<ItemStack> toadd =null;
-
-            CompoundTag item_nbt = new CompoundTag();
-            item_nbt.putString("material", this.name.toLowerCase());
-
-            var pick_head = CreateArmouryWeapon.PICKAXE_HEAD.asStack();
-            pick_head.setTag(item_nbt);
-
-            toadd.add(pick_head);
-
-            manager.addIngredientsAtRuntime(VanillaTypes.ITEM_STACK, toadd); */
-        }
 
         if (json.get("parts").getAsJsonObject().get("sword_blade").getAsJsonObject().get("enabled").getAsBoolean())
             this.swordBlade = new MaterialPart("sword_blade", json.get("parts").getAsJsonObject().get("sword_blade").getAsJsonObject());
@@ -74,6 +51,10 @@ public class Material {
 
     public int getColor() {
         return this.color;
+    }
+
+    public int getTier() {
+        return this.tier;
     }
 
     public Material getMaterial() {

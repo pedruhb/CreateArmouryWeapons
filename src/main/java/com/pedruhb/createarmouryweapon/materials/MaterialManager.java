@@ -35,12 +35,12 @@ public class MaterialManager {
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final Gson GSON = (new GsonBuilder()).disableHtmlEscaping().create();
     public static Set<Material> MATERIALS = new HashSet<Material>();
-	public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateArmouryWeapon.MODID);
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateArmouryWeapon.MODID);
     public static ArrayList<ItemStack> parts_stacks = new ArrayList<ItemStack>();
 
     public static void load(ResourceManager resourceManager) {
 
-         Map<ResourceLocation, Resource> resources = resourceManager.listResources("materials",
+        Map<ResourceLocation, Resource> resources = resourceManager.listResources("materials",
                 s -> s.toString().endsWith(".json"));
         if (resources.isEmpty())
             return;
@@ -57,7 +57,8 @@ public class MaterialManager {
                 JsonObject json = null;
 
                 try {
-                    json = GsonHelper.fromJson(GSON, IOUtils.toString(iresource.open(), StandardCharsets.UTF_8), JsonObject.class);
+                    json = GsonHelper.fromJson(GSON, IOUtils.toString(iresource.open(), StandardCharsets.UTF_8),
+                            JsonObject.class);
                 } catch (IOException ex) {
                     LOGGER.error("Could not read material {}", name, ex);
                 }
@@ -78,12 +79,12 @@ public class MaterialManager {
                 }
             }
 
-        } 
+        }
     }
 
-    public static Material getMaterialByName(String name){
-        for(Material material : MATERIALS){
-            if(material.getName().toLowerCase() == name.toLowerCase()) 
+    public static Material getMaterialByName(String name) {
+        for (Material material : MATERIALS) {
+            if (material.getName().toLowerCase() == name.toLowerCase())
                 return material.getMaterial();
         }
         return null;
