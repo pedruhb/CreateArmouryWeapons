@@ -84,7 +84,7 @@ public class MaterialManager {
 
     public static Material getMaterialByName(String name) {
         for (Material material : MATERIALS) {
-            if (material.getName().toLowerCase() == name.toLowerCase())
+            if (material.getName().toLowerCase().equals(name.toLowerCase()))
                 return material.getMaterial();
         }
         return null;

@@ -1,0 +1,16 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "results": [
+    {
+      "fluid": "createarmouryweapon:molten",
+      "nbt": { "material": "iron" },
+      "amount": 144
+    }
+  ],
+  "heatRequirement": "heated"
+}

@@ -1,0 +1,12 @@
+{
+    "sources": [
+      {
+        "type": "single",
+        "resource": "createarmouryweapon:fluid/molten_flow"
+      },
+      {
+        "type": "single",
+        "resource": "createarmouryweapon:fluid/molten_still"
+      }
+    ]
+  }

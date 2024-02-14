@@ -24,6 +24,7 @@
       "createarmouryweapon:cast_tool_binding",
       "createarmouryweapon:cast_tool_handle",
       "createarmouryweapon:cast_tough_handle",
-      "createarmouryweapon:cast_wire"
+      "createarmouryweapon:cast_wire",
+      "createarmouryweapon:cast_sword_guard"
     ]
   }

@@ -69,6 +69,7 @@
   "item.createarmouryweapon.cast_large_plate": "Large Plate Cast",
   "item.createarmouryweapon.cast_tool_handle": "Tool Handle Cast",
   "item.createarmouryweapon.cast_tough_handle": "Tough Handle Cast",
+  "item.createarmouryweapon.cast_sword_guard": "Sword Guard Cast",
   "block.createarmouryweapon.seared_casing": "Seared Casing",
   "block.createarmouryweapon.scorched_casing": "Scorched Casing",
   "item.createarmouryweapon.reinforcement_base": "Obsidian Plate",
@@ -111,5 +112,6 @@
   "stats.createarmouryweapon.tier": "Tier",
   "stats.createarmouryweapon.attack_damage": "Attack Damage",
   "stats.createarmouryweapon.attack_speed": "Attack Speed",
-  "stats.createarmouryweapon.mining_speed": "Mining Speed"
+  "stats.createarmouryweapon.mining_speed": "Mining Speed",
+  "stats.createarmouryweapon.durability": "Durability"
 }

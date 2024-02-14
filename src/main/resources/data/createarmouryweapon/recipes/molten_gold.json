@@ -1,0 +1,16 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+  "results": [
+    {
+      "fluid": "createarmouryweapon:molten",
+      "nbt": { "material": "gold" },
+      "amount": 144
+    }
+  ],
+  "heatRequirement": "heated"
+}

@@ -50,12 +50,13 @@ public class MaterialItem extends Item {
 
         for (Material material_part : MaterialManager.MATERIALS) {
 
-            if (material_part.getName().toLowerCase().contains(tags.getString("material").toLowerCase())) {
+            if (material_part.getName().toLowerCase().equals(tags.getString("material").toLowerCase())) {
 
                 int attack_damage = 0;
                 int attack_speed = 0;
                 int mining_speed = 0;
                 int tier = material_part.getTier();
+                int durability = 0;
 
                 HashMap<String, MaterialPart> parts = new HashMap<String, MaterialPart>();
 
@@ -71,12 +72,14 @@ public class MaterialItem extends Item {
                         attack_damage = part.getValue().getAttackDamage();
                         attack_speed = part.getValue().getAttackSpeed();
                         mining_speed = part.getValue().getMiningSpeed();
+                        durability = part.getValue().getDurability();
                     }
                 }
 
                 tooltip.add(Component.literal(""));
                 tooltip.add(Component.literal(Component.translatable("generic.createarmouryweapon.stats").getString() + ": "));
                 tooltip.add(Component.literal(Component.translatable("stats.createarmouryweapon.tier").getString() + ": " + tier));
+                tooltip.add(Component.literal(Component.translatable("stats.createarmouryweapon.durability").getString() + ": " + durability));
                 tooltip.add(Component.literal(Component.translatable("stats.createarmouryweapon.attack_damage").getString() + ": " + attack_damage));
                 tooltip.add(Component.literal(Component.translatable("stats.createarmouryweapon.attack_speed").getString() + ": " + attack_speed));
                 tooltip.add(Component.literal(Component.translatable("stats.createarmouryweapon.mining_speed").getString() + ": " + mining_speed));
