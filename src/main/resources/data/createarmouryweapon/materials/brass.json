@@ -1,9 +1,9 @@
 {
     "enabled": true,
     "molten_enabled": true,
-    "molten_color": "#FFC73D02",
-    "name": "Iron",
-    "color": "#eeeeee",
+    "molten_color": "#FFB37748",
+    "name": "Brass",
+    "color": "#F8CA67",
     "tier": 1,
     "repair_kit": {
         "enabled": true,

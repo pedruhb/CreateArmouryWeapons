@@ -105,7 +105,17 @@
   "item.createarmouryweapon.sword_guard": "Sword Guard",
   "generic.createarmouryweapon.material": "Material",
   "generic.createarmouryweapon.traits": "Traits",
+  "material.createarmouryweapon.copper": "Copper",
+  "material.createarmouryweapon.zinc": "Zinc",
+  "material.createarmouryweapon.iron": "Iron",
   "material.createarmouryweapon.gold": "Gold",
+  "material.createarmouryweapon.diamond": "Diamond",
+  "material.createarmouryweapon.emerald": "Emerald",
+  "material.createarmouryweapon.netherite": "Netherite",
+  "material.createarmouryweapon.brass": "Brass",
+  "material.createarmouryweapon.cobalt": "Cobalt",
+  "material.createarmouryweapon.ardite": "Ardite",
+  "material.createarmouryweapon.debris": "Debris",
   "item.createarmouryweapon.gold_pickaxe_head": "Golden Pickaxe Head",
   "trait.createarmouryweapon.silk_touch.name": "Silk Touch",
   "generic.createarmouryweapon.stats": "Stats",
@@ -113,5 +123,18 @@
   "stats.createarmouryweapon.attack_damage": "Attack Damage",
   "stats.createarmouryweapon.attack_speed": "Attack Speed",
   "stats.createarmouryweapon.mining_speed": "Mining Speed",
-  "stats.createarmouryweapon.durability": "Durability"
+  "stats.createarmouryweapon.durability": "Durability",
+  "molten.createarmouryweapon.gold": "Molten Gold",
+  "molten.createarmouryweapon.zinc": "Molten Zinc",
+  "molten.createarmouryweapon.brass": "Molten Brass",
+  "molten.createarmouryweapon.netherite": "Molten Netherite",
+  "molten.createarmouryweapon.cobalt": "Molten Cobalt",
+  "molten.createarmouryweapon.copper": "Molten Copper",
+  "molten.createarmouryweapon.debris": "Molten Debris",
+  "molten.createarmouryweapon.ardite": "Molten Ardite",
+  "molten.createarmouryweapon.iron": "Molten Iron",
+  "molten.createarmouryweapon.diamond": "Molten Diamond",
+  "molten.createarmouryweapon.emerald": "Molten Emerald"
+
+
 }

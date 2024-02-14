@@ -1,7 +1,5 @@
 package com.pedruhb.createarmouryweapon.materials.serialize;
 
-import java.math.BigInteger;
-
 import com.google.gson.JsonObject;
 import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
 import com.pedruhb.createarmouryweapon.materials.serialize.tools.MaterialPart;

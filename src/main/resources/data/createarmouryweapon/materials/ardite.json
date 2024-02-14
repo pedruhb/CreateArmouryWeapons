@@ -1,9 +1,9 @@
 {
     "enabled": true,
     "molten_enabled": true,
-    "molten_color": "#FFC73D02",
-    "name": "Iron",
-    "color": "#eeeeee",
+    "molten_color": "#FFC24A0F",
+    "name": "Ardite",
+    "color": "#EC981A",
     "tier": 1,
     "repair_kit": {
         "enabled": true,

@@ -1,9 +1,9 @@
 {
     "enabled": true,
     "molten_enabled": true,
-    "molten_color": "#FFFF00",
+    "molten_color": "#FFE6AF15",
     "name": "Gold",
-    "color": "#FFFF00",
+    "color": "#FAF25E",
     "tier": 1,
     "repair_kit": {
         "enabled": true,
@@ -16,7 +16,7 @@
             "attack_damage":  4,
             "attack_speed": 1.2,
             "durability": 64,
-            "traits": ["silk_touch", "unbreaking_3"]
+            "traits": []
         },
         "sword_blade": {
             "enabled": true,
@@ -24,7 +24,7 @@
             "attack_damage":  4,
             "attack_speed": 1.2,
             "durability": 64,
-            "traits": ["sharpness_3"]
+            "traits": []
         },
         "tool_handle": {
             "enabled": true,
@@ -32,7 +32,7 @@
             "attack_damage":  4,
             "attack_speed": 1.2,
             "durability": 64,
-            "traits": ["haste_1"]
+            "traits": []
         },
         "tool_binding": {
             "enabled": true,
@@ -48,7 +48,7 @@
             "attack_damage":  4,
             "attack_speed": 1.2,
             "durability": 64,
-            "traits": ["looting_2"]
+            "traits": []
         },
         "axe_head": {
             "enabled": true,

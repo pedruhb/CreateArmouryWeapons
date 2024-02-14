@@ -1,9 +1,9 @@
 {
     "enabled": true,
     "molten_enabled": true,
-    "molten_color": "#FFC73D02",
-    "name": "Iron",
-    "color": "#eeeeee",
+    "molten_color": "#FF4B4042",
+    "name": "Netherite",
+    "color": "#595659",
     "tier": 1,
     "repair_kit": {
         "enabled": true,

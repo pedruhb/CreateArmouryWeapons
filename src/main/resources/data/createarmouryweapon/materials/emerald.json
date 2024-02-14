@@ -1,17 +1,17 @@
 {
     "enabled": true,
     "molten_enabled": true,
-    "molten_color": "#FFC73D02",
-    "name": "Iron",
-    "color": "#eeeeee",
+    "molten_color": "#FF00A82B",
+    "name": "Emerald",
+    "color": "#17DA61",
     "tier": 1,
     "repair_kit": {
-        "enabled": true,
+        "enabled": false,
         "durability_amount": 1024
     },
     "parts": {
         "pickaxe_head": {
-            "enabled": true,
+            "enabled": false,
             "mining_speed": 2.0,
             "attack_damage":  4,
             "attack_speed": 1.2,
@@ -19,7 +19,7 @@
             "traits": []
         },
         "sword_blade": {
-            "enabled": true,
+            "enabled": false,
             "mining_speed": 2.0,
             "attack_damage":  4,
             "attack_speed": 1.2,
@@ -27,7 +27,7 @@
             "traits": []
         },
         "tool_handle": {
-            "enabled": true,
+            "enabled": false,
             "mining_speed": 2.0,
             "attack_damage":  4,
             "attack_speed": 1.2,
@@ -35,7 +35,7 @@
             "traits": []
         },
         "tool_binding": {
-            "enabled": true,
+            "enabled": false,
             "mining_speed": 2.0,
             "attack_damage":  4,
             "attack_speed": 1.2,
@@ -43,7 +43,7 @@
             "traits": []
         },
         "sword_guard": {
-            "enabled": true,
+            "enabled": false,
             "mining_speed": 2.0,
             "attack_damage":  4,
             "attack_speed": 1.2,
@@ -51,7 +51,7 @@
             "traits": []
         },
         "axe_head": {
-            "enabled": true,
+            "enabled": false,
             "mining_speed": 0,
             "attack_damage":  0,
             "attack_speed": 0,
@@ -59,7 +59,7 @@
             "traits": []
         },
         "cleaver_blade": {
-            "enabled": true,
+            "enabled": false,
             "mining_speed": 0,
             "attack_damage":  0,
             "attack_speed": 0,
@@ -67,7 +67,7 @@
             "traits": []
         },
         "large_plate": {
-            "enabled": true,
+            "enabled": false,
             "mining_speed": 0,
             "attack_damage":  0,
             "attack_speed": 0,
@@ -75,7 +75,7 @@
             "traits": []
         },
         "tough_handle": {
-            "enabled": true,
+            "enabled": false,
             "mining_speed": 0,
             "attack_damage":  0,
             "attack_speed": 0,
@@ -83,7 +83,7 @@
             "traits": []
         },
         "round_plate": {
-            "enabled": true,
+            "enabled": false,
             "mining_speed": 0,
             "attack_damage":  0,
             "attack_speed": 0,

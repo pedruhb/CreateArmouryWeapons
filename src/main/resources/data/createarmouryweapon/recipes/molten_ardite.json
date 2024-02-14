@@ -1,0 +1,16 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "createarmouryweapon:ardite_ingot"
+    }
+  ],
+  "results": [
+    {
+      "fluid": "createarmouryweapon:molten",
+      "nbt": { "material": "ardite" },
+      "amount": 144
+    }
+  ],
+  "heatRequirement": "heated"
+}

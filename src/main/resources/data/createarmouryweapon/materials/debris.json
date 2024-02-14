@@ -1,9 +1,9 @@
 {
     "enabled": true,
     "molten_enabled": true,
-    "molten_color": "#FFC73D02",
-    "name": "Iron",
-    "color": "#eeeeee",
+    "molten_color": "#FF5C332B",
+    "name": "Debris",
+    "color": "#64463F",
     "tier": 1,
     "repair_kit": {
         "enabled": true,

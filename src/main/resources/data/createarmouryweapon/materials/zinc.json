@@ -1,9 +1,9 @@
 {
     "enabled": true,
     "molten_enabled": true,
-    "molten_color": "#FFC73D02",
-    "name": "Iron",
-    "color": "#eeeeee",
+    "molten_color": "#FF4F6C62",
+    "name": "Zinc",
+    "color": "#B7E6BF",
     "tier": 1,
     "repair_kit": {
         "enabled": true,

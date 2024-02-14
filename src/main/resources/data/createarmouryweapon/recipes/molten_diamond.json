@@ -1,0 +1,16 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "results": [
+    {
+      "fluid": "createarmouryweapon:molten",
+      "nbt": { "material": "diamond" },
+      "amount": 144
+    }
+  ],
+  "heatRequirement": "superheated"
+}
