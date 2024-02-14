@@ -1,5 +1,6 @@
-package com.pedruhb.createarmouryweapon;
+package com.pedruhb.createarmouryweapon.blocks;
 
+import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
 import com.simibubi.create.foundation.block.connected.AllCTTypes;
 import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
 import com.simibubi.create.foundation.block.connected.CTSpriteShifter;

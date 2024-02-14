@@ -14,11 +14,11 @@ public class MoltenFluidSubtypeInterpreter implements IIngredientSubtypeInterpre
 			return IIngredientSubtypeInterpreter.NONE;
 
 		CompoundTag tag = ingredient.getTag();
-        
-        if(!tag.contains("material"))
-            return IIngredientSubtypeInterpreter.NONE;
-		
-        return tag.getString("material");
+
+		if (!tag.contains("material"))
+			return IIngredientSubtypeInterpreter.NONE;
+
+		return tag.getString("material");
 
 	}
 

@@ -5,9 +5,11 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class MoltenFluidHandler {
 
-    public static FluidStack getFluidFromMaterial(Material material) {
+	public static FluidStack getFluidFromMaterial(Material material) {
+
 		FluidStack fluid = MoltenFluid.withMaterial(1000, material);
 		return fluid;
+
 	}
 
 }
