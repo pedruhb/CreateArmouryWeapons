@@ -1,6 +1,6 @@
 package com.pedruhb.createarmouryweapon.fluids.molten;
 
-import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
+import com.pedruhb.createarmouryweapon.fluids.AllFluids;
 import com.pedruhb.createarmouryweapon.materials.MaterialManager;
 import com.pedruhb.createarmouryweapon.materials.serialize.Material;
 import com.simibubi.create.AllFluids.TintedFluidType;
@@ -21,7 +21,7 @@ public class MoltenFluid extends VirtualFluid {
     }
 
     public static FluidStack of(int amount, Material material) {
-        FluidStack fluidStack = new FluidStack(CreateArmouryWeapon.MOLTEN.get().getSource(), amount);
+        FluidStack fluidStack = new FluidStack(AllFluids.MOLTEN.get().getSource(), amount);
         addMaterialToFluidStack(fluidStack, material);
         return fluidStack;
     }

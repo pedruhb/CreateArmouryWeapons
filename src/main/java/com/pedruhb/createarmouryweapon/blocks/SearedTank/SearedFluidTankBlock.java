@@ -1,6 +1,6 @@
 package com.pedruhb.createarmouryweapon.blocks.SearedTank;
 
-import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
+import com.pedruhb.createarmouryweapon.blocks.AllBlocks;
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.content.fluids.tank.CreativeFluidTankBlockEntity.CreativeSmartFluidTank;
@@ -260,7 +260,7 @@ public class SearedFluidTankBlock extends Block implements IWrenchable, IBE<Sear
 
 	@Override
 	public BlockEntityType<? extends SearedFluidTankBlockEntity> getBlockEntityType() {
-		return CreateArmouryWeapon.SEARED_TANK_ENTITY.get();
+		return AllBlocks.SEARED_TANK_ENTITY.get();
 	}
 
 	@Override

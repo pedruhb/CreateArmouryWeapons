@@ -2,7 +2,7 @@ package com.pedruhb.createarmouryweapon.blocks.CastingDepot;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
+import com.pedruhb.createarmouryweapon.blocks.AllBlocks;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.block.ProperWaterloggedBlock;
@@ -96,7 +96,7 @@ public class CastingDepotBlock extends Block
 
 	@Override
 	public BlockEntityType<? extends CastingDepotBlockEntity> getBlockEntityType() {
-		return CreateArmouryWeapon.CASTING_DEPOT_ENTITY.get();
+		return AllBlocks.CASTING_DEPOT_ENTITY.get();
 	}
 
 	@Override

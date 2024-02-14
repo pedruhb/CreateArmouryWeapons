@@ -1,6 +1,6 @@
 package com.pedruhb.createarmouryweapon.blocks.SearedTank;
 
-import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
+import com.pedruhb.createarmouryweapon.blocks.AllBlocks;
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -73,7 +73,7 @@ public class SearedFluidTankItem extends BlockItem {
 		if (!SearedFluidTankBlock.isTank(placedOnState))
 			return;
 
-		SearedFluidTankBlockEntity tankAt = ConnectivityHandler.partAt(CreateArmouryWeapon.SEARED_TANK_ENTITY.get(), world, placedOnPos);
+		SearedFluidTankBlockEntity tankAt = ConnectivityHandler.partAt(AllBlocks.SEARED_TANK_ENTITY.get(), world, placedOnPos);
 
 		if (tankAt == null)
 			return;
