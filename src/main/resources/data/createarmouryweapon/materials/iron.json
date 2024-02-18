@@ -4,7 +4,7 @@
     "molten_color": "#FFC73D02",
     "name": "Iron",
     "color": "#eeeeee",
-    "tier": 1,
+    "tier": 2,
     "repair_kit": {
         "enabled": true,
         "durability_amount": 1024

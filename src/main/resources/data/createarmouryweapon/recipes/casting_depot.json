@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "B B",
+    "B B"
+  ],
+  "key": {
+    "B": {
+      "item": "createarmouryweapon:seared_brick"
+    },
+    "C": {
+      "item": "createarmouryweapon:seared_casing"
+    }
+  },
+  "result": {
+    "item": "createarmouryweapon:casting_depot"
+  }
+}

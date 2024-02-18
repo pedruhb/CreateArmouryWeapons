@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bb",
+    "bb"
+  ],
+  "key": {
+    "b": {
+      "item": "createarmouryweapon:scorched_brick"
+    }
+  },
+  "result": {
+    "item": "createarmouryweapon:scorched_bricks"
+  }
+}

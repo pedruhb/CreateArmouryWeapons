@@ -1,0 +1,24 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "createarmouryweapon:cast_pickaxe_head",
+      "consumed": false
+    },
+    {
+      "amount": 432,
+      "fluid": "createarmouryweapon:molten",
+      "nbt": {
+        "material": "iron"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "createarmouryweapon:pickaxe_head",
+      "nbt": {
+        "material": "iron"
+      }
+    }
+  ]
+}

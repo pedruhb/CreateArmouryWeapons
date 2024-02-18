@@ -1,0 +1,10 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": [
+		{
+			"item": "minecraft:cooked_porkchop"
+		}
+	],
+	"result": "createarmouryweapon:bacon",
+	"count": 3
+}

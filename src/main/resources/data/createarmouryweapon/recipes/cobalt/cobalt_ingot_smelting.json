@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": [
+    {
+      "item": "createarmouryweapon:raw_cobalt"
+    },
+    {
+      "item": "createarmouryweapon:cobalt_ore"
+    },
+    {
+      "item": "createarmouryweapon:crushed_raw_cobalt"
+    }
+  ],
+  "result": "createarmouryweapon:cobalt_ingot",
+  "experience": 1.5,
+  "cookingtime": 200
+}

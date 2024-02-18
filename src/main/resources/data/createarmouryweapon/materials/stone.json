@@ -1,0 +1,102 @@
+{
+    "enabled": true,
+    "molten_enabled": false,
+    "molten_color": "#FFFFFF",
+    "name": "Stone",
+    "color": "#919190",
+    "tier": 1,
+    "repair_kit": {
+        "enabled": true,
+        "durability_amount": 128
+    },
+    "parts": {
+        "pickaxe_head": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "durability": 64,
+            "traits": []
+        },
+        "sword_blade": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "durability": 64,
+            "traits": []
+        },
+        "tool_handle": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "durability": 64,
+            "traits": []
+        },
+        "tool_binding": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "durability": 64,
+            "traits": []
+        },
+        "sword_guard": {
+            "enabled": true,
+            "mining_speed": 2.0,
+            "attack_damage":  4,
+            "attack_speed": 1.2,
+            "durability": 64,
+            "traits": []
+        },
+        "axe_head": {
+            "enabled": true,
+            "mining_speed": 0,
+            "attack_damage":  0,
+            "attack_speed": 0,
+            "durability": 64,
+            "traits": []
+        },
+        "cleaver_blade": {
+            "enabled": true,
+            "mining_speed": 0,
+            "attack_damage":  0,
+            "attack_speed": 0,
+            "durability": 64,
+            "traits": []
+        },
+        "large_plate": {
+            "enabled": true,
+            "mining_speed": 0,
+            "attack_damage":  0,
+            "attack_speed": 0,
+            "durability": 64,
+            "traits": []
+        },
+        "tough_handle": {
+            "enabled": true,
+            "mining_speed": 0,
+            "attack_damage":  0,
+            "attack_speed": 0,
+            "durability": 64,
+            "traits": []
+        },
+        "round_plate": {
+            "enabled": true,
+            "mining_speed": 0,
+            "attack_damage":  0,
+            "attack_speed": 0,
+            "durability": 64,
+            "traits": []
+        },
+        "bowstring": {
+            "enabled": false,
+            "mining_speed": 0,
+            "attack_damage":  0,
+            "attack_speed": 0,
+            "durability": 0,
+            "traits": []
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": [
+		{
+			"tag": "createarmouryweapon:seared_stone"
+		}
+	],
+	"result": "createarmouryweapon:seared_paver",
+	"count": 1
+}

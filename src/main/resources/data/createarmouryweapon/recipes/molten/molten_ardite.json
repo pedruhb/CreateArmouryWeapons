@@ -2,7 +2,7 @@
   "type": "create:mixing",
   "ingredients": [
     {
-      "item": "createarmouryweapon:ardite_ingot"
+      "tag": "forge:ingots/ardite"
     }
   ],
   "results": [

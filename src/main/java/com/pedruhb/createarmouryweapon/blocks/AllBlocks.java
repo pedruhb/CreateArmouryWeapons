@@ -11,6 +11,13 @@ import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotBlock;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotBlockEntity;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotRenderer;
+import com.pedruhb.createarmouryweapon.blocks.SearedPipe.SearedPipeBlockStateGen;
+import com.pedruhb.createarmouryweapon.blocks.SearedPipe.SearedPipeAttachmentModel;
+import com.pedruhb.createarmouryweapon.blocks.SearedPipe.SearedPipeBlock;
+import com.pedruhb.createarmouryweapon.blocks.SearedPipe.SearedPipeBlockEntity;
+import com.pedruhb.createarmouryweapon.blocks.SearedSpout.SearedSpoutBlock;
+import com.pedruhb.createarmouryweapon.blocks.SearedSpout.SearedSpoutBlockEntity;
+import com.pedruhb.createarmouryweapon.blocks.SearedSpout.SearedSpoutRenderer;
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankBlock;
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankBlockEntity;
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankGenerator;
@@ -18,8 +25,16 @@ import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankItem;
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankModel;
 import com.pedruhb.createarmouryweapon.blocks.SearedTank.SearedFluidTankRenderer;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
+import com.simibubi.create.content.fluids.PipeAttachmentModel;
+import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
+import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
+import com.simibubi.create.content.fluids.spout.SpoutBlock;
+import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
+import com.simibubi.create.content.fluids.spout.SpoutRenderer;
+import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
 import com.simibubi.create.content.redstone.displayLink.source.ItemNameDisplaySource;
 import com.simibubi.create.foundation.data.AssetLookup;
+import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.BuilderTransformers;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
@@ -51,8 +66,14 @@ public class AllBlocks {
         public static final RegistryObject<Block> ARDITE_BLOCK = BLOCKS.register("ardite_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(6.0f, 7.0f)));
         public static final RegistryObject<Item> ARDITE_BLOCK_ITEM = ITEMS.register("ardite_block", () -> new BlockItem(ARDITE_BLOCK.get(), new Item.Properties()));
 
+        public static final RegistryObject<Block> RAW_ARDITE_BLOCK = BLOCKS.register("raw_ardite_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(10.0F)));
+        public static final RegistryObject<Item> RAW_ARDITE_BLOCK_ITEM = ITEMS.register("raw_ardite_block", () -> new BlockItem(RAW_ARDITE_BLOCK.get(), new Item.Properties()));
+
         public static final RegistryObject<Block> COBALT_ORE = BLOCKS.register("cobalt_ore", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER).sound(SoundType.NETHER_ORE).requiresCorrectToolForDrops().strength(10.0F)));
         public static final RegistryObject<Item> COBALT_ORE_ITEM = ITEMS.register("cobalt_ore", () -> new BlockItem(COBALT_ORE.get(), new Item.Properties()));
+
+        public static final RegistryObject<Block> RAW_COBALT_BLOCK = BLOCKS.register("raw_cobalt_block", () -> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(10.0F)));
+        public static final RegistryObject<Item> RAW_COBALT_BLOCK_ITEM = ITEMS.register("raw_cobalt_block", () -> new BlockItem(RAW_COBALT_BLOCK.get(), new Item.Properties()));
 
         public static final RegistryObject<Block> GROUT = BLOCKS.register("grout", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).sound(SoundType.SAND).strength(3.0f).friction(0.8F)));
         public static final RegistryObject<Item> GROUT_ITEM = ITEMS.register("grout", () -> new BlockItem(GROUT.get(), new Item.Properties()));
@@ -157,4 +178,35 @@ public class AllBlocks {
                 .renderer(() -> CastingDepotRenderer::new)
                 .register();
 
+        /* Seared Spout */
+        public static final BlockEntry<SearedSpoutBlock> SEARED_SPOUT = REGISTRATE.block("seared_spout", SearedSpoutBlock::new)
+	        .initialProperties(SharedProperties::copperMetal)
+	        .transform(pickaxeOnly())
+	        .blockstate((ctx, prov) -> prov.simpleBlock(ctx.getEntry(), AssetLookup.partialBaseModel(ctx, prov)))
+	        .addLayer(() -> RenderType::cutoutMipped)
+	        .item(AssemblyOperatorBlockItem::new)
+	        .transform(customItemModel())
+	        .register();
+
+        public static final BlockEntityEntry<SearedSpoutBlockEntity> SEARED_SPOUT_ENTITY = REGISTRATE.blockEntity("seared_spout", SearedSpoutBlockEntity::new)
+	        .validBlocks(SEARED_SPOUT)
+	        .renderer(() -> SearedSpoutRenderer::new)
+	        .register();
+
+
+        /* Seared Pipe  */
+        public static final BlockEntry<SearedPipeBlock> SEARED_PIPE = REGISTRATE.block("seared_pipe", SearedPipeBlock::new)
+                .initialProperties(SharedProperties::copperMetal)
+                .properties(p -> p.forceSolidOn())
+                .transform(pickaxeOnly())
+                .blockstate(SearedPipeBlockStateGen.pipe())
+                .onRegister(CreateRegistrate.blockModel(() -> SearedPipeAttachmentModel::new))
+                .item()
+                .transform(customItemModel())
+                .register();
+
+        public static final BlockEntityEntry<SearedPipeBlockEntity> SEARED_PIPE_ENTITY = REGISTRATE.blockEntity("seared_pipe", SearedPipeBlockEntity::new)
+		.validBlocks(SEARED_PIPE)
+		.register();
 }
+

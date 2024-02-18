@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": [
+    {
+      "item": "createarmouryweapon:raw_ardite"
+    },
+    {
+      "item": "createarmouryweapon:ardite_ore"
+    },
+    {
+      "item": "createarmouryweapon:crushed_raw_ardite"
+    }
+  ],
+  "result": "createarmouryweapon:ardite_ingot",
+  "experience": 1.5,
+  "cookingtime": 200
+}

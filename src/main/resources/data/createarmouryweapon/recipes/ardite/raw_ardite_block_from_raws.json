@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "createarmouryweapon:raw_ardite_block",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:raw_materials/ardite"
+    }
+  },
+  "result": {
+    "item": "createarmouryweapon:raw_ardite_block"
+  }
+}

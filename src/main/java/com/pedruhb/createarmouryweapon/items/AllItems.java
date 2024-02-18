@@ -22,9 +22,12 @@ public class AllItems {
         public static final RegistryObject<Item> RAW_ARDITE = ITEMS.register("raw_ardite", () -> new Item(new Item.Properties()));
         public static final RegistryObject<Item> ARDITE_INGOT = ITEMS.register("ardite_ingot", () -> new Item(new Item.Properties()));
         public static final RegistryObject<Item> ARDITE_NUGGET = ITEMS.register("ardite_nugget", () -> new Item(new Item.Properties()));
+        public static final RegistryObject<Item> CRUSHED_ARDITE = ITEMS.register("crushed_raw_ardite", () -> new Item(new Item.Properties()));
+
         public static final RegistryObject<Item> RAW_COBALT = ITEMS.register("raw_cobalt", () -> new Item(new Item.Properties()));
         public static final RegistryObject<Item> COBALT_INGOT = ITEMS.register("cobalt_ingot", () -> new Item(new Item.Properties()));
         public static final RegistryObject<Item> COBALT_NUGGET = ITEMS.register("cobalt_nugget", () -> new Item(new Item.Properties()));
+        public static final RegistryObject<Item> CRUSHED_COBALT = ITEMS.register("crushed_raw_cobalt", () -> new Item(new Item.Properties()));
 
         /* NUGGETS */
         public static final RegistryObject<Item> DEBRIS_NUGGET = ITEMS.register("debris_nugget", () -> new Item(new Item.Properties()));

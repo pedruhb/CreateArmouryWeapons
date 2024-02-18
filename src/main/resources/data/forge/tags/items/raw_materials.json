@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:raw_materials/cobalt",
+    "#forge:raw_materials/ardite"
+  ]
+}

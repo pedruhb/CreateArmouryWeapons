@@ -1,0 +1,19 @@
+{
+        "replace": false,
+        "values": [
+                "createarmouryweapon:seared_bricks",
+                "createarmouryweapon:seared_cobble",
+                "createarmouryweapon:seared_cracked_bricks",
+                "createarmouryweapon:seared_creeper",
+                "createarmouryweapon:seared_fancy_bricks",
+                "createarmouryweapon:seared_ladder",
+                "createarmouryweapon:seared_paver",
+                "createarmouryweapon:seared_paver_slab",
+                "createarmouryweapon:seared_road",
+                "createarmouryweapon:seared_small_bricks",
+                "createarmouryweapon:seared_square_bricks",
+                "createarmouryweapon:seared_stone",
+                "createarmouryweapon:seared_tile",
+                "createarmouryweapon:seared_triangle_bricks"
+        ]
+}

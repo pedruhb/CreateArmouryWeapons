@@ -2,7 +2,7 @@
   "type": "create:mixing",
   "ingredients": [
     {
-      "item": "create:brass_ingot"
+      "tag": "forge:ingots/brass"
     }
   ],
   "results": [

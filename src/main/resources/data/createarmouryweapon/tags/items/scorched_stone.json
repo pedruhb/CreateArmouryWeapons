@@ -1,0 +1,11 @@
+{
+        "replace": false,
+        "values": [
+                "createarmouryweapon:scorched_bricks",
+                "createarmouryweapon:scorched_chiseled",
+                "createarmouryweapon:scorched_ladder",
+                "createarmouryweapon:scorched_polished",
+                "createarmouryweapon:scorched_road",
+                "createarmouryweapon:scorched_stone"
+        ]
+}

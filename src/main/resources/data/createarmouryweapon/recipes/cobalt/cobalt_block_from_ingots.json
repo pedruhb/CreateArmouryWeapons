@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "createarmouryweapon:cobalt_block",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/cobalt"
+    }
+  },
+  "result": {
+    "item": "createarmouryweapon:cobalt_block"
+  }
+}

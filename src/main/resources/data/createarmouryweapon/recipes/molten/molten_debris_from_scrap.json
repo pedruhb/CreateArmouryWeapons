@@ -1,0 +1,16 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:netherite_scrap"
+    }
+  ],
+  "results": [
+    {
+      "fluid": "createarmouryweapon:molten",
+      "nbt": { "material": "debris" },
+      "amount": 144
+    }
+  ],
+  "heatRequirement": "superheated"
+}

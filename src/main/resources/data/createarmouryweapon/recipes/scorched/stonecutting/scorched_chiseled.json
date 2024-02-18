@@ -1,0 +1,10 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": [
+		{
+			"tag": "createarmouryweapon:scorched_stone"
+		}
+	],
+	"result": "createarmouryweapon:scorched_chiseled",
+	"count": 1
+}

@@ -1,0 +1,10 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": [
+		{
+			"tag": "createarmouryweapon:seared_stone"
+		}
+	],
+	"result": "createarmouryweapon:seared_square_bricks",
+	"count": 1
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "createarmouryweapon:raw_cobalt",
+  "ingredients": [
+    {
+      "item": "createarmouryweapon:raw_cobalt_block"
+    }
+  ],
+  "result": {
+    "item": "createarmouryweapon:raw_cobalt",
+    "count": 9
+  }
+}

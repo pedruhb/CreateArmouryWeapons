@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "createarmouryweapon:ardite_nugget",
+  "ingredients": [
+    {
+      "item": "createarmouryweapon:ardite_ingot"
+    }
+  ],
+  "result": {
+    "item": "createarmouryweapon:ardite_nugget",
+    "count": 9
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "createarmouryweapon:cobalt_ingot",
+  "ingredients": [
+    {
+      "item": "createarmouryweapon:cobalt_block"
+    }
+  ],
+  "result": {
+    "item": "createarmouryweapon:cobalt_ingot",
+    "count": 9
+  }
+}

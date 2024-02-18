@@ -1,0 +1,27 @@
+{
+  "type": "create:crushing",
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:raw_materials/ardite"
+      }
+    }
+  ],
+  "ingredients": [
+    {
+      "tag": "forge:raw_materials/ardite"
+    }
+  ],
+  "processingTime": 400,
+  "results": [
+    {
+      "item": "createarmouryweapon:crushed_raw_ardite"
+    },
+    {
+      "chance": 0.75,
+      "item": "create:experience_nugget"
+    }
+  ]
+}

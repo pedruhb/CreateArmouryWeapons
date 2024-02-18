@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "createarmouryweapon:raw_ardite",
+  "ingredients": [
+    {
+      "item": "createarmouryweapon:raw_ardite_block"
+    }
+  ],
+  "result": {
+    "item": "createarmouryweapon:raw_ardite",
+    "count": 9
+  }
+}

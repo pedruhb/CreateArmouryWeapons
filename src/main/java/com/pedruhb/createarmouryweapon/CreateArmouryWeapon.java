@@ -3,10 +3,11 @@ package com.pedruhb.createarmouryweapon;
 import com.mojang.logging.LogUtils;
 
 import com.pedruhb.createarmouryweapon.blocks.AllBlocks;
+import com.pedruhb.createarmouryweapon.blocks.AllPartialModels;
 import com.pedruhb.createarmouryweapon.fluids.AllFluids;
 import com.pedruhb.createarmouryweapon.materials.MaterialManager;
+import com.pedruhb.createarmouryweapon.recipes.AllRecipeTypes;
 import com.pedruhb.createarmouryweapon.items.AllItems;
-
 import com.simibubi.create.foundation.data.CreateRegistrate;
 
 import net.minecraft.core.registries.Registries;
@@ -34,10 +35,14 @@ public class CreateArmouryWeapon {
 
         public static final Logger LOGGER = LogUtils.getLogger();
 
-        public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+        public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
+                        .create(Registries.CREATIVE_MODE_TAB, MODID);
         public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
 
-        public static final RegistryObject<CreativeModeTab> CREATE_AW_TAB = CREATIVE_MODE_TABS.register("create_aw_tab", () -> CreativeModeTab.builder().withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> AllItems.BACON.get().getDefaultInstance()).title(Component.translatable(MODID)).build());
+        public static final RegistryObject<CreativeModeTab> CREATE_AW_TAB = CREATIVE_MODE_TABS.register("create_aw_tab",
+                        () -> CreativeModeTab.builder().withTabsBefore(CreativeModeTabs.COMBAT)
+                                        .icon(() -> AllItems.BACON.get().getDefaultInstance())
+                                        .title(Component.translatable(MODID)).build());
 
         private void addCreative(BuildCreativeModeTabContentsEvent event) {
 
@@ -54,12 +59,16 @@ public class CreateArmouryWeapon {
                         event.accept(AllItems.ARDITE_INGOT);
                         event.accept(AllItems.ARDITE_NUGGET);
                         event.accept(AllBlocks.ARDITE_BLOCK);
+                        event.accept(AllItems.CRUSHED_ARDITE);
+                        event.accept(AllBlocks.RAW_ARDITE_BLOCK);
 
                         event.accept(AllBlocks.COBALT_ORE);
                         event.accept(AllItems.RAW_COBALT);
                         event.accept(AllItems.COBALT_INGOT);
                         event.accept(AllItems.COBALT_NUGGET);
                         event.accept(AllBlocks.COBALT_BLOCK);
+                        event.accept(AllItems.CRUSHED_COBALT);
+                        event.accept(AllBlocks.RAW_COBALT_BLOCK);
 
                         event.accept(AllItems.CAST_BLANK);
                         event.accept(AllItems.CAST_BOW_GRIP);
@@ -128,6 +137,8 @@ public class CreateArmouryWeapon {
 
                         event.accept(AllBlocks.CASTING_DEPOT.get());
                         event.accept(AllBlocks.SEARED_TANK.get());
+                        event.accept(AllBlocks.SEARED_SPOUT.get());
+                        event.accept(AllBlocks.SEARED_PIPE.get());
 
                 }
 
@@ -140,6 +151,8 @@ public class CreateArmouryWeapon {
                 AllBlocks.ITEMS.register(modEventBus);
                 AllBlocks.BLOCKS.register(modEventBus);
                 AllFluids.register();
+                AllRecipeTypes.register(modEventBus);
+                AllPartialModels.init();
                 CREATIVE_MODE_TABS.register(modEventBus);
                 MinecraftForge.EVENT_BUS.register(this);
                 modEventBus.addListener(this::addCreative);
@@ -163,7 +176,7 @@ public class CreateArmouryWeapon {
 
                 for (int i = 0; i < numberHexString.length(); i++) {
 
-                        if ((ChaArray[i] >= '0') && (ChaArray[i] <= '9')){
+                        if ((ChaArray[i] >= '0') && (ChaArray[i] <= '9')) {
                                 cChar = ChaArray[i] - '0';
                         } else {
                                 cChar = ChaArray[i] - 'A' + 10;
