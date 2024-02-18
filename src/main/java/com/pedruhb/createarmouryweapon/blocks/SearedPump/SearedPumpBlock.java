@@ -1,7 +1,6 @@
 package com.pedruhb.createarmouryweapon.blocks.SearedPump;
 
 import com.pedruhb.createarmouryweapon.blocks.AllBlocks;
-import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.AllShapes;
 import com.simibubi.create.content.fluids.FluidPropagator;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
@@ -48,8 +47,7 @@ public class SearedPumpBlock extends DirectionalKineticBlock
 
 	@Override
 	public BlockState getRotatedBlockState(BlockState originalState, Direction targetedFace) {
-		return originalState.setValue(FACING, originalState.getValue(FACING)
-			.getOpposite());
+		return originalState.setValue(FACING, originalState.getValue(FACING).getOpposite());
 	}
 
 	@Override
@@ -59,19 +57,16 @@ public class SearedPumpBlock extends DirectionalKineticBlock
 
 	@Override
 	public Axis getRotationAxis(BlockState state) {
-		return state.getValue(FACING)
-			.getAxis();
+		return state.getValue(FACING).getAxis();
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter p_220053_2_, BlockPos p_220053_3_,
-		CollisionContext p_220053_4_) {
+	public VoxelShape getShape(BlockState state, BlockGetter p_220053_2_, BlockPos p_220053_3_, CollisionContext p_220053_4_) {
 		return AllShapes.PUMP.get(state.getValue(FACING));
 	}
 
 	@Override
-	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block otherBlock, BlockPos neighborPos,
-		boolean isMoving) {
+	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block otherBlock, BlockPos neighborPos, boolean isMoving) {
 		DebugPackets.sendNeighborsUpdatePacket(world, pos);
 		Direction d = FluidPropagator.validateNeighbourChange(state, world, pos, otherBlock, neighborPos, isMoving);
 		if (d == null)
@@ -94,8 +89,7 @@ public class SearedPumpBlock extends DirectionalKineticBlock
 	}
 
 	@Override
-	public BlockState updateShape(BlockState state, Direction direction, BlockState neighbourState, LevelAccessor world,
-		BlockPos pos, BlockPos neighbourPos) {
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighbourState, LevelAccessor world, BlockPos pos, BlockPos neighbourPos) {
 		if (state.getValue(BlockStateProperties.WATERLOGGED))
 			world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
 		return state;
@@ -116,14 +110,18 @@ public class SearedPumpBlock extends DirectionalKineticBlock
 		double bestDistance = Double.MAX_VALUE;
 
 		for (Direction d : Iterate.directions) {
+
 			BlockPos adjPos = pos.relative(d);
 			BlockState adjState = level.getBlockState(adjPos);
+
 			if (!FluidPipeBlock.canConnectTo(level, adjPos, adjState, d))
 				continue;
-			double distance = Vec3.atLowerCornerOf(d.getNormal())
-				.distanceTo(Vec3.atLowerCornerOf(targetDirection.getNormal()));
+
+			double distance = Vec3.atLowerCornerOf(d.getNormal()).distanceTo(Vec3.atLowerCornerOf(targetDirection.getNormal()));
+
 			if (distance > bestDistance)
 				continue;
+
 			bestDistance = distance;
 			bestConnectedDirection = d;
 		}
@@ -150,8 +148,7 @@ public class SearedPumpBlock extends DirectionalKineticBlock
 		if (state != oldState)
 			world.scheduleTick(pos, this, 1, TickPriority.HIGH);
 
-		if (isPump(state) && isPump(oldState) && state.getValue(FACING) == oldState.getValue(FACING)
-			.getOpposite()) {
+		if (isPump(state) && isPump(oldState) && state.getValue(FACING) == oldState.getValue(FACING).getOpposite()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (!(blockEntity instanceof SearedPumpBlockEntity))
 				return;
@@ -161,8 +158,7 @@ public class SearedPumpBlock extends DirectionalKineticBlock
 	}
 
 	public static boolean isOpenAt(BlockState state, Direction d) {
-		return d.getAxis() == state.getValue(FACING)
-			.getAxis();
+		return d.getAxis() == state.getValue(FACING).getAxis();
 	}
 
 	@Override

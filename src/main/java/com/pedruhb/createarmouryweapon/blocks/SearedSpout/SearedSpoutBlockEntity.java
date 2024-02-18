@@ -40,7 +40,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class SearedSpoutBlockEntity extends SmartBlockEntity implements IHaveGoggleInformation {
 
-	public static final int FILLING_TIME = 20;
+	public static final int FILLING_TIME = 60;
 	protected BeltProcessingBehaviour beltProcessing;
 
 	public int processingTicks;
@@ -86,14 +86,15 @@ public class SearedSpoutBlockEntity extends SmartBlockEntity implements IHaveGog
 		return HOLD;
 	}
 
-	protected ProcessingResult whenItemHeld(TransportedItemStack transported,
-		TransportedItemStackHandlerBehaviour handler) {
+	protected ProcessingResult whenItemHeld(TransportedItemStack transported, TransportedItemStackHandlerBehaviour handler) {
+
 		if (processingTicks != -1 && processingTicks != 5)
 			return HOLD;
 		if (!FillingBySearedSpout.canItemBeFilled(level, transported.stack))
 			return PASS;
 		if (tank.isEmpty())
 			return HOLD;
+
 		FluidStack fluid = getCurrentFluidInTank();
 		int requiredAmountForItem = FillingBySearedSpout.getRequiredAmountForItem(level, transported.stack, fluid.copy());
 		if (requiredAmountForItem == -1)
@@ -129,16 +130,14 @@ public class SearedSpoutBlockEntity extends SmartBlockEntity implements IHaveGog
 				award(AllAdvancements.FOODS);
 		}
 
-		tank.getPrimaryHandler()
-			.setFluid(fluid);
+		tank.getPrimaryHandler().setFluid(fluid);
 		sendSplash = true;
 		notifyUpdate();
 		return HOLD;
 	}
 
 	private FluidStack getCurrentFluidInTank() {
-		return tank.getPrimaryHandler()
-			.getFluid();
+		return tank.getPrimaryHandler().getFluid();
 	}
 
 	@Override
@@ -220,9 +219,7 @@ public class SearedSpoutBlockEntity extends SmartBlockEntity implements IHaveGog
 			}
 		}
 
-		if (processingTicks >= 8 && level.isClientSide)
-			spawnProcessingParticles(tank.getPrimaryTank()
-				.getRenderedFluid());
+		if (processingTicks >= 8 && level.isClientSide) spawnProcessingParticles(tank.getPrimaryTank().getRenderedFluid());
 	}
 
 	protected void spawnProcessingParticles(FluidStack fluid) {

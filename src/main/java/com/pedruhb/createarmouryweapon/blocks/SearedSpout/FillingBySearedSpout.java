@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.content.fluids.transfer.FillingRecipe;
+import com.pedruhb.createarmouryweapon.recipes.AllRecipeTypes;
+import com.pedruhb.createarmouryweapon.recipes.CastingRecipe;
 import com.simibubi.create.content.fluids.transfer.GenericItemFilling;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipe;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
@@ -24,54 +24,54 @@ public class FillingBySearedSpout {
 	public static boolean canItemBeFilled(Level world, ItemStack stack) {
 		WRAPPER.setItem(0, stack);
 
-		Optional<FillingRecipe> assemblyRecipe =
-			SequencedAssemblyRecipe.getRecipe(world, WRAPPER, AllRecipeTypes.FILLING.getType(), FillingRecipe.class);
+		Optional<CastingRecipe> assemblyRecipe = SequencedAssemblyRecipe.getRecipe(world, WRAPPER, AllRecipeTypes.CASTING.getType(), CastingRecipe.class);
+
 		if (assemblyRecipe.isPresent())
 			return true;
 
-		if (AllRecipeTypes.FILLING.find(WRAPPER, world)
-			.isPresent())
+		if (AllRecipeTypes.CASTING.find(WRAPPER, world).isPresent())
 			return true;
+
 		return GenericItemFilling.canItemBeFilled(world, stack);
 	}
 
 	public static int getRequiredAmountForItem(Level world, ItemStack stack, FluidStack availableFluid) {
+
 		WRAPPER.setItem(0, stack);
 
-		Optional<FillingRecipe> assemblyRecipe = SequencedAssemblyRecipe.getRecipe(world, WRAPPER,
-			AllRecipeTypes.FILLING.getType(), FillingRecipe.class, matchItemAndFluid(world, availableFluid));
-		if (assemblyRecipe.isPresent()) {
+		Optional<CastingRecipe> assemblyRecipe = SequencedAssemblyRecipe.getRecipe(world, WRAPPER, AllRecipeTypes.CASTING.getType(), CastingRecipe.class, matchItemAndFluid(world, availableFluid));
+		
+		 if (assemblyRecipe.isPresent()) {
 			FluidIngredient requiredFluid = assemblyRecipe.get()
 				.getRequiredFluid();
 			if (requiredFluid.test(availableFluid))
 				return requiredFluid.getRequiredAmount();
-		}
+		} 
 
 		for (Recipe<RecipeWrapper> recipe : world.getRecipeManager()
-			.getRecipesFor(AllRecipeTypes.FILLING.getType(), WRAPPER, world)) {
-			FillingRecipe fillingRecipe = (FillingRecipe) recipe;
+			.getRecipesFor(AllRecipeTypes.CASTING.getType(), WRAPPER, world)) {
+			CastingRecipe fillingRecipe = (CastingRecipe) recipe;
 			FluidIngredient requiredFluid = fillingRecipe.getRequiredFluid();
 			if (requiredFluid.test(availableFluid))
 				return requiredFluid.getRequiredAmount();
 		}
+		
 		return GenericItemFilling.getRequiredAmountForItem(world, stack, availableFluid);
 	}
 
 	public static ItemStack fillItem(Level world, int requiredAmount, ItemStack stack, FluidStack availableFluid) {
+
 		FluidStack toFill = availableFluid.copy();
+
 		toFill.setAmount(requiredAmount);
 
 		WRAPPER.setItem(0, stack);
 
-		FillingRecipe fillingRecipe = SequencedAssemblyRecipe
-			.getRecipe(world, WRAPPER, AllRecipeTypes.FILLING.getType(), FillingRecipe.class,
-				matchItemAndFluid(world, availableFluid))
-			.filter(fr -> fr.getRequiredFluid()
-					.test(toFill))
+		CastingRecipe fillingRecipe = SequencedAssemblyRecipe.getRecipe(world, WRAPPER, AllRecipeTypes.CASTING.getType(), CastingRecipe.class,
+				matchItemAndFluid(world, availableFluid)).filter(fr -> fr.getRequiredFluid().test(toFill))
 				.orElseGet(() -> {
-					for (Recipe<RecipeWrapper> recipe : world.getRecipeManager()
-						.getRecipesFor(AllRecipeTypes.FILLING.getType(), WRAPPER, world)) {
-						FillingRecipe fr = (FillingRecipe) recipe;
+					for (Recipe<RecipeWrapper> recipe : world.getRecipeManager().getRecipesFor(AllRecipeTypes.CASTING.getType(), WRAPPER, world)) {
+						CastingRecipe fr = (CastingRecipe) recipe;
 						FluidIngredient requiredFluid = fr.getRequiredFluid();
 						if (requiredFluid.test(toFill))
 							return fr;
@@ -89,9 +89,8 @@ public class FillingBySearedSpout {
 		return GenericItemFilling.fillItem(world, requiredAmount, stack, availableFluid);
 	}
 
-	private static Predicate<FillingRecipe> matchItemAndFluid(Level world, FluidStack availableFluid) {
-		return r -> r.matches(WRAPPER, world) && r.getRequiredFluid()
-			.test(availableFluid);
+	private static Predicate<CastingRecipe> matchItemAndFluid(Level world, FluidStack availableFluid) {
+		return r -> r.matches(WRAPPER, world) && r.getRequiredFluid().test(availableFluid);
 	}
 
 }

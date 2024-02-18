@@ -151,7 +151,6 @@ public class CreateArmouryWeapon {
                 AllFluids.register();
                 AllRecipeTypes.register(modEventBus);
                 DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> CreateArmouryWeaponClient::new);
-                //AllPartialModels.init();
                 CREATIVE_MODE_TABS.register(modEventBus);
                 MinecraftForge.EVENT_BUS.register(this);
                 modEventBus.addListener(this::addCreative);

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
-import com.simibubi.create.AllBlocks;
+import com.pedruhb.createarmouryweapon.blocks.AllBlocks;
 import com.simibubi.create.compat.jei.category.sequencedAssembly.SequencedAssemblySubCategory;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder.ProcessingRecipeParams;
@@ -49,7 +49,7 @@ public class CastingRecipe extends ProcessingRecipe<RecipeWrapper> implements IA
 	}
 
 	public FluidIngredient getRequiredFluid() {
-		if (fluidIngredients.isEmpty()) throw new IllegalStateException("Filling Recipe: " + id.toString() + " has no fluid ingredient!");
+		if (fluidIngredients.isEmpty()) throw new IllegalStateException("Casting Recipe: " + id.toString() + " has no fluid ingredient!");
 		return fluidIngredients.get(0);
 	}
 
@@ -68,13 +68,12 @@ public class CastingRecipe extends ProcessingRecipe<RecipeWrapper> implements IA
 			.getMatchingFluidStacks();
 		if (matchingFluidStacks.size() == 0)
 			return Components.literal("Invalid");
-		return Lang.translateDirect("recipe.assembly.spout_filling_fluid",
-			matchingFluidStacks.get(0).getDisplayName().getString());
+		return Lang.translateDirect("recipe.assembly.spout_casting_fluid", matchingFluidStacks.get(0).getDisplayName().getString());
 	}
 
 	@Override
 	public void addRequiredMachines(Set<ItemLike> list) {
-		list.add(AllBlocks.SPOUT.get());
+		list.add(AllBlocks.SEARED_SPOUT.get());
 	}
 
 	@Override

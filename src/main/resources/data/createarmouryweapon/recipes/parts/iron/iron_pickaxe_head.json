@@ -1,5 +1,5 @@
 {
-  "type": "create:filling",
+  "type": "createarmouryweapon:casting",
   "ingredients": [
     {
       "item": "createarmouryweapon:cast_pickaxe_head",
