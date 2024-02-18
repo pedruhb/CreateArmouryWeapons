@@ -3,7 +3,7 @@
 	"parent": "block/block",
 	"textures": {
 		"0": "create:block/glass_fluid_pipe",
-		"particle": "createarmouryweapon:block/seared_stone"
+		"particle": "create:block/copper_plating"
 	},
 	"elements": [
 		{

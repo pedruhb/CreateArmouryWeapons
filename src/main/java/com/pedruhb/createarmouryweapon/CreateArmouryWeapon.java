@@ -15,12 +15,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.network.chat.Component;
-
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -35,14 +36,10 @@ public class CreateArmouryWeapon {
 
         public static final Logger LOGGER = LogUtils.getLogger();
 
-        public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
-                        .create(Registries.CREATIVE_MODE_TAB, MODID);
+        public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
         public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
 
-        public static final RegistryObject<CreativeModeTab> CREATE_AW_TAB = CREATIVE_MODE_TABS.register("create_aw_tab",
-                        () -> CreativeModeTab.builder().withTabsBefore(CreativeModeTabs.COMBAT)
-                                        .icon(() -> AllItems.BACON.get().getDefaultInstance())
-                                        .title(Component.translatable(MODID)).build());
+        public static final RegistryObject<CreativeModeTab> CREATE_AW_TAB = CREATIVE_MODE_TABS.register("create_aw_tab", () -> CreativeModeTab.builder().withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> AllItems.BACON.get().getDefaultInstance()).title(Component.translatable(MODID)).build());
 
         private void addCreative(BuildCreativeModeTabContentsEvent event) {
 
@@ -139,6 +136,7 @@ public class CreateArmouryWeapon {
                         event.accept(AllBlocks.SEARED_TANK.get());
                         event.accept(AllBlocks.SEARED_SPOUT.get());
                         event.accept(AllBlocks.SEARED_PIPE.get());
+                        event.accept(AllBlocks.SEARED_MECHANICAL_PUMP.get());
 
                 }
 
@@ -152,7 +150,8 @@ public class CreateArmouryWeapon {
                 AllBlocks.BLOCKS.register(modEventBus);
                 AllFluids.register();
                 AllRecipeTypes.register(modEventBus);
-                AllPartialModels.init();
+                DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> CreateArmouryWeaponClient::new);
+                //AllPartialModels.init();
                 CREATIVE_MODE_TABS.register(modEventBus);
                 MinecraftForge.EVENT_BUS.register(this);
                 modEventBus.addListener(this::addCreative);

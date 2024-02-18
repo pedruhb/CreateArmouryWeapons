@@ -138,5 +138,6 @@
   "item.createarmouryweapon.crushed_raw_ardite": "Crushed Raw Ardite",
   "item.createarmouryweapon.crushed_raw_cobalt": "Crushed Raw Cobalt",
   "block.createarmouryweapon.seared_spout": "Seared Spout",
-  "block.createarmouryweapon.seared_pipe": "Seared Pipe"
+  "block.createarmouryweapon.seared_pipe": "Seared Pipe",
+  "block.createarmouryweapon.seared_pump": "Seared Pump"
 }

@@ -2,7 +2,7 @@ package com.pedruhb.createarmouryweapon.blocks.SearedSpout;
 
 import com.jozufozu.flywheel.core.PartialModel;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.simibubi.create.AllPartialModels;
+import com.pedruhb.createarmouryweapon.blocks.AllPartialModels;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour.TankSegment;
 import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer;
@@ -21,7 +21,7 @@ public class SearedSpoutRenderer extends SafeBlockEntityRenderer<SearedSpoutBloc
 	public SearedSpoutRenderer(BlockEntityRendererProvider.Context context) {
 	}
 
-	static final PartialModel[] BITS = { AllPartialModels.SPOUT_TOP, AllPartialModels.SPOUT_MIDDLE, AllPartialModels.SPOUT_BOTTOM };
+	static final PartialModel[] BITS = { AllPartialModels.SEARED_SPOUT_TOP, AllPartialModels.SEARED_SPOUT_MIDDLE, AllPartialModels.SEARED_SPOUT_BOTTOM };
 
 	@Override
 	protected void renderSafe(SearedSpoutBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {

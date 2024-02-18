@@ -11,10 +11,13 @@ import com.pedruhb.createarmouryweapon.CreateArmouryWeapon;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotBlock;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotBlockEntity;
 import com.pedruhb.createarmouryweapon.blocks.CastingDepot.CastingDepotRenderer;
-import com.pedruhb.createarmouryweapon.blocks.SearedPipe.SearedPipeBlockStateGen;
 import com.pedruhb.createarmouryweapon.blocks.SearedPipe.SearedPipeAttachmentModel;
 import com.pedruhb.createarmouryweapon.blocks.SearedPipe.SearedPipeBlock;
 import com.pedruhb.createarmouryweapon.blocks.SearedPipe.SearedPipeBlockEntity;
+import com.pedruhb.createarmouryweapon.blocks.SearedPump.SearedPumpBlock;
+import com.pedruhb.createarmouryweapon.blocks.SearedPump.SearedPumpBlockEntity;
+import com.pedruhb.createarmouryweapon.blocks.SearedPump.SearedPumpCogInstance;
+import com.pedruhb.createarmouryweapon.blocks.SearedPump.SearedPumpRenderer;
 import com.pedruhb.createarmouryweapon.blocks.SearedSpout.SearedSpoutBlock;
 import com.pedruhb.createarmouryweapon.blocks.SearedSpout.SearedSpoutBlockEntity;
 import com.pedruhb.createarmouryweapon.blocks.SearedSpout.SearedSpoutRenderer;
@@ -28,9 +31,14 @@ import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
+import com.simibubi.create.content.fluids.pump.PumpBlock;
+import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
+import com.simibubi.create.content.fluids.pump.PumpCogInstance;
+import com.simibubi.create.content.fluids.pump.PumpRenderer;
 import com.simibubi.create.content.fluids.spout.SpoutBlock;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import com.simibubi.create.content.fluids.spout.SpoutRenderer;
+import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
 import com.simibubi.create.content.redstone.displayLink.source.ItemNameDisplaySource;
 import com.simibubi.create.foundation.data.AssetLookup;
@@ -45,6 +53,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -196,10 +205,9 @@ public class AllBlocks {
 
         /* Seared Pipe  */
         public static final BlockEntry<SearedPipeBlock> SEARED_PIPE = REGISTRATE.block("seared_pipe", SearedPipeBlock::new)
-                .initialProperties(SharedProperties::copperMetal)
-                .properties(p -> p.forceSolidOn())
+                .initialProperties(() -> Blocks.IRON_BLOCK)
                 .transform(pickaxeOnly())
-                .blockstate(SearedPipeBlockStateGen.pipe())
+                .blockstate(BlockStateGen.pipe())
                 .onRegister(CreateRegistrate.blockModel(() -> SearedPipeAttachmentModel::new))
                 .item()
                 .transform(customItemModel())
@@ -207,6 +215,24 @@ public class AllBlocks {
 
         public static final BlockEntityEntry<SearedPipeBlockEntity> SEARED_PIPE_ENTITY = REGISTRATE.blockEntity("seared_pipe", SearedPipeBlockEntity::new)
 		.validBlocks(SEARED_PIPE)
+		.register();
+
+        /* Seared Pump */    
+        public static final BlockEntry<SearedPumpBlock> SEARED_MECHANICAL_PUMP = REGISTRATE.block("seared_pump", SearedPumpBlock::new)
+                .initialProperties(SharedProperties::copperMetal)
+                .properties(p -> p.mapColor(MapColor.STONE))
+                .transform(pickaxeOnly())
+                .blockstate(BlockStateGen.directionalBlockProviderIgnoresWaterlogged(true))
+                .onRegister(CreateRegistrate.blockModel(() -> PipeAttachmentModel::new))
+                .transform(BlockStressDefaults.setImpact(4.0))
+                .item()
+                .transform(customItemModel())
+                .register();
+
+        public static final BlockEntityEntry<SearedPumpBlockEntity> SEARED_MECHANICAL_PUMP_ENTITY = REGISTRATE.blockEntity("seared_pump", SearedPumpBlockEntity::new)
+		.instance(() -> SearedPumpCogInstance::new)
+		.validBlocks(AllBlocks.SEARED_MECHANICAL_PUMP)
+		.renderer(() -> SearedPumpRenderer::new)
 		.register();
 }
 

@@ -14,21 +14,27 @@ import net.minecraft.core.Direction;
 
 public class AllPartialModels {
 
-	public static final Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials, Map<Direction, PartialModel>> PIPE_ATTACHMENTS = new EnumMap<>(FluidTransportBehaviour.AttachmentTypes.ComponentPartials.class);
+	public static final PartialModel
+
+		SEARED_PIPE_CASING = block("seared_pipe/casing"),
+		SEARED_SPOUT_TOP = block("seared_spout/top"), 
+		SEARED_SPOUT_MIDDLE = block("seared_spout/middle"), 
+		SEARED_SPOUT_BOTTOM = block("seared_spout/bottom")
+		;
+
+	public static final Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials, Map<Direction, PartialModel>> SEARED_PIPE_ATTACHMENTS =
+		new EnumMap<>(FluidTransportBehaviour.AttachmentTypes.ComponentPartials.class);
+
 
 	static {
-
 		for (FluidTransportBehaviour.AttachmentTypes.ComponentPartials type : FluidTransportBehaviour.AttachmentTypes.ComponentPartials.values()) {
 			Map<Direction, PartialModel> map = new HashMap<>();
 			for (Direction d : Iterate.directions) {
 				String asId = Lang.asId(type.name());
 				map.put(d, block("seared_pipe/" + asId + "/" + Lang.asId(d.getSerializedName())));
 			}
-                        
-			PIPE_ATTACHMENTS.put(type, map);
+			SEARED_PIPE_ATTACHMENTS.put(type, map);
 		}
-		
-		
 	}
 
 	private static PartialModel block(String path) {
@@ -40,6 +46,7 @@ public class AllPartialModels {
 	}
 
 	public static void init() {
+		// init static fields
 	}
 
 }

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "createarmouryweapon:block/seared_pump/block",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "createarmouryweapon:block/seared_pump/block",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "createarmouryweapon:block/seared_pump/block",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "createarmouryweapon:block/seared_pump/block",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "createarmouryweapon:block/seared_pump/block"
+    },
+    "facing=west": {
+      "model": "createarmouryweapon:block/seared_pump/block",
+      "x": 90,
+      "y": 270
+    }
+  }
+}
